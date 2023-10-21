@@ -1,0 +1,42 @@
+{
+  "name": "refactoring-compass-chat",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "dev-https": "next dev --experimental-https",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@supabase/auth-ui-react": "^0.4.6",
+    "@supabase/auth-ui-shared": "^0.1.8",
+    "@supabase/supabase-js": "^2.38.0",
+    "@tanstack/react-query": "^4.35.7",
+    "@tanstack/react-query-devtools": "^4.35.7",
+    "framer-motion": "^10.16.4",
+    "jotai": "^2.4.3",
+    "jotai-tanstack-query": "^0.7.2",
+    "next": "13.5.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hook-form": "^7.47.0",
+    "sass": "^1.68.0"
+  },
+  "devDependencies": {
+    "@swc-jotai/react-refresh": "^0.1.0",
+    "@tanstack/eslint-plugin-query": "^4.36.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.4",
+    "eslint-config-prettier": "^9.0.0",
+    "postcss": "^8",
+    "prettier": "^3.0.3",
+    "tailwindcss": "^3",
+    "typescript": "^5"
+  }
+}
