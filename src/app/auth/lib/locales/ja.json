@@ -1,0 +1,43 @@
+{
+  "sign_up": {
+    "email_label": "メールアドレス",
+    "password_label": "パスワード",
+    "email_input_placeholder": "example@example.com",
+    "password_input_placeholder": "Your password",
+    "button_label": "アカウント作成",
+    "loading_button_label": "アカウント作成...",
+    "social_provider_text": "{{provider}}で登録",
+    "link_text": "アカウントを作成"
+  },
+  "sign_in": {
+    "email_label": "メールアドレス",
+    "password_label": "パスワード",
+    "email_input_placeholder": "example@example.com",
+    "password_input_placeholder": "Your password",
+    "button_label": "ログイン",
+    "loading_button_label": "ログイン...",
+    "social_provider_text": "{{provider}} でログイン",
+    "link_text": "既にアカウントをお持ちの方"
+  },
+  "magic_link": {
+    "email_input_label": "メールアドレス",
+    "email_input_placeholder": "example@example.com",
+    "button_label": "Send Magic Link",
+    "loading_button_label": "Sending Magic Link ...",
+    "link_text": "Send a magic link email"
+  },
+  "forgotten_password": {
+    "email_label": "メールアドレス",
+    "password_label": "Your Password",
+    "email_input_placeholder": "example@example.com",
+    "button_label": "メールを送信してパスワードを変更",
+    "loading_button_label": "メールを送信...",
+    "link_text": "パスワードをお忘れの方"
+  },
+  "update_password": {
+    "password_label": "新しいパスワード",
+    "password_input_placeholder": "Your new password",
+    "button_label": "パスワードを変更",
+    "loading_button_label": "パスワードを変更..."
+  }
+}
