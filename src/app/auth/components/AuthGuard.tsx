@@ -17,7 +17,7 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
     setLoginUser(user);
   }, [user]);
 
-  return <>{loginUser && <div>{loginUser.nickname}でログインしています</div>}</>;
+  return <>{loginUser && children}</>;
 };
 
 export default AuthGuard;
