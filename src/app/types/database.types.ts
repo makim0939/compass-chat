@@ -117,21 +117,21 @@ export interface Database {
           id: number;
           room_id: number;
           user_id: string;
-          usernames: string;
+          talkroom_name: string;
         };
         Insert: {
           created_at?: string;
           id?: number;
           room_id: number;
           user_id: string;
-          usernames: string;
+          talkroom_name: string;
         };
         Update: {
           created_at?: string;
           id?: number;
           room_id?: number;
           user_id?: string;
-          usernames?: string;
+          talkroom_name?: string;
         };
         Relationships: [
           {
