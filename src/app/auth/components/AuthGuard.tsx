@@ -4,18 +4,24 @@ import { useAtom } from "jotai";
 import useSession from "../hooks/useSession";
 import useLoginUser from "../hooks/useLoginUser";
 import { loginUserAtom } from "@/app/atoms";
+import { useRouter } from "next/navigation";
 
 const AuthGuard = ({ children }: { children: React.ReactNode }) => {
-  //セッションの確認
-  const { data: session } = useSession();
-  //ログインしているユーザの取得
+  const { data: session, isLoading: isSessionLoading } = useSession();
   const { data: user, isLoading: isUserLoading } = useLoginUser(session);
-  //atomにセット
   const [loginUser, setLoginUser] = useAtom(loginUserAtom);
+
+  const router = useRouter();
+
   useEffect(() => {
-    if (!user) return;
-    setLoginUser(user);
-  }, [user]);
+    if (isSessionLoading) return;
+    if (!session) {
+      router.push("/auth");
+      return;
+    }
+    if (user) setLoginUser(user);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, session]);
 
   return <>{loginUser && children}</>;
 };
