@@ -10,6 +10,7 @@ const useTalkRoom = (roomId: number): UseQueryResult<Room> =>
       const talkRoom = await fetchData(url);
       return talkRoom;
     },
+    staleTime: Infinity,
   });
 
 export default useTalkRoom;

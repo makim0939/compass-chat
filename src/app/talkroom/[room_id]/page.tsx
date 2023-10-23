@@ -4,6 +4,7 @@ import { useAtom } from "jotai";
 import React, { use } from "react";
 import useTalkRoom from "./hooks/useTalkRoom";
 import useMembers from "./hooks/useMembers";
+import useMessages from "./hooks/useMessages";
 
 const TalkRoom = ({ params }: { params: { room_id: number } }) => {
   const [loginUser] = useAtom(loginUserAtom);
@@ -15,6 +16,7 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
     loginUserId: loginUser.id,
   });
   //メッセージの取得
+  const { data: messages, isLoading: isMessagesLoading } = useMessages(params.room_id);
 
   return <div></div>;
 };

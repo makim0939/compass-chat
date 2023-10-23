@@ -29,5 +29,6 @@ const useMembers = ({
       );
       return Members;
     },
+    staleTime: Infinity,
   });
 export default useMembers;
