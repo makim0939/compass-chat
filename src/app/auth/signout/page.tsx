@@ -14,8 +14,12 @@ const SignOut = () => {
       if (error) throw new Error("signOut error");
       setLoginUser(null);
     };
+    window.history.pushState(null, "", window.location.href);
+    window.onpopstate = function () {
+      window.history.pushState(null, "", window.location.href);
+    };
     signOut();
-  }, [setLoginUser]);
+  }, []);
   return (
     <div>
       <h2>ログアウトしました</h2>
