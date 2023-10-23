@@ -1,0 +1,72 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 16vh;
+  border-bottom: #f0f0f0 solid 1px;
+  .header_left {
+    width: 41px;
+  }
+  .my_profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon {
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+    margin: 0 8px;
+    background-color: #d0d0d0;
+  }
+  h2 {
+    font-size: 24px;
+    margin: 0 8px;
+  }
+  .header_buttons {
+    display: flex;
+    .add_connection_button {
+      width: 3.2em;
+      height: 3.2em;
+      border: none;
+    }
+
+    .logout_button {
+      width: 3.2em;
+      height: 3.2em;
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      .logout_button_img {
+        width: 3.2em;
+      }
+    }
+  }
+}
+.talkroom_list {
+  padding: 0;
+  .list {
+    list-style-type: none;
+    &:active {
+      background-color: #f0f0f0;
+    }
+  }
+  .talkroom_link {
+    text-decoration: none;
+    color: #252528;
+  }
+}
+
+.talkroom_item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  .icon {
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+    margin: 4px 8px 4px 16px;
+    background-color: #d0d0d0;
+  }
+}

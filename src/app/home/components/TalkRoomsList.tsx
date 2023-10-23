@@ -1,12 +1,10 @@
 import React from "react";
-import { useAtom } from "jotai";
 import useRoomUserRelations from "../hooks/useRelationRoomUser";
-import { loginUserAtom } from "@/app/atoms";
 import TalkRoomsListItem from "./TalkRoomsListItem";
+import { Profile } from "@/app/types/database.types";
+import styles from "../home.module.scss";
 
-const TalkRoomsList = () => {
-  const [loginUser] = useAtom(loginUserAtom);
-  if (!loginUser) throw new Error("loginUser is undefined");
+const TalkRoomsList = ({ loginUser }: { loginUser: Profile }) => {
   //所属するtalkroom一覧を取得
   const { data: roomUserRelations, isLoading: isRelationsLoading } = useRoomUserRelations(
     loginUser?.id,
@@ -23,7 +21,7 @@ const TalkRoomsList = () => {
               {roomUserRelations.length === 0 ? (
                 <div>トークルームがありません</div>
               ) : (
-                <ul>
+                <ul className={styles.talkroom_list}>
                   {roomUserRelations.map((roomUserRelation) => (
                     <TalkRoomsListItem
                       key={roomUserRelation.id}
