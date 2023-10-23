@@ -3,6 +3,46 @@ export type Json = string | number | boolean | null | { [key: string]: Json | un
 export interface Database {
   public: {
     Tables: {
+      connection: {
+        Row: {
+          created_at: string;
+          id: number;
+          isAccepted: boolean;
+          isRejected: boolean;
+          user1_id: string;
+          user2_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: number;
+          isAccepted?: boolean;
+          isRejected?: boolean;
+          user1_id: string;
+          user2_id: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: number;
+          isAccepted?: boolean;
+          isRejected?: boolean;
+          user1_id?: string;
+          user2_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "connection_user1_id_fkey";
+            columns: ["user1_id"];
+            referencedRelation: "profile";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "connection_user2_id_fkey";
+            columns: ["user2_id"];
+            referencedRelation: "profile";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       geolocation: {
         Row: {
           created_at: string;
@@ -147,30 +187,6 @@ export interface Database {
             referencedColumns: ["id"];
           },
         ];
-      };
-      spatial_ref_sys: {
-        Row: {
-          auth_name: string | null;
-          auth_srid: number | null;
-          proj4text: string | null;
-          srid: number;
-          srtext: string | null;
-        };
-        Insert: {
-          auth_name?: string | null;
-          auth_srid?: number | null;
-          proj4text?: string | null;
-          srid: number;
-          srtext?: string | null;
-        };
-        Update: {
-          auth_name?: string | null;
-          auth_srid?: number | null;
-          proj4text?: string | null;
-          srid?: number;
-          srtext?: string | null;
-        };
-        Relationships: [];
       };
     };
   };

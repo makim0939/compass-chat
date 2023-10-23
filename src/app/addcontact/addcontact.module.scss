@@ -1,0 +1,89 @@
+$theme: #35d0c5;
+$theme_hover: #50e0d5;
+$theme_active: #20bbb0;
+$theme_pale: #a0f0e5;
+.wrapper {
+  font-family:
+    "Segoe UI",
+    "Segoe UI Web (West European)",
+    "Segoe UI",
+    -apple-system,
+    BlinkMacSystemFont,
+    Roboto,
+    "Helvetica Neue",
+    sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: #252528;
+}
+.index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .link {
+    text-decoration: none;
+    .back_ward_button {
+      margin: 4px 8px;
+      text-align: start;
+      color: #2540d0;
+    }
+  }
+}
+
+.title {
+  text-align: center;
+}
+.search_form {
+  width: 70%;
+  margin: 96px auto 32px auto;
+  .input_wrapper {
+    margin: 32px 0 32px 0;
+    .input_row {
+      margin: 8px 0;
+      text-align: left;
+    }
+    .input_text {
+      width: 98%;
+      height: 28px;
+      background-color: #e5e5e7;
+      border: none;
+      border-radius: 2px;
+      font-size: 90%;
+      font-weight: bold;
+      color: #252528;
+      &:focus {
+        outline: $theme_pale 1px solid;
+      }
+    }
+    .input_select {
+      margin: 5px 16px;
+      padding: 5px;
+      border: 1px solid #eaeaec;
+      background-color: #f0f0f2;
+      border-radius: 2px;
+      font-size: 80%;
+      color: #252528;
+    }
+    .input_error {
+      color: red;
+      font-size: 90%;
+      font-weight: normal;
+    }
+  }
+  .form_buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .button {
+    border: none;
+    background-color: $theme;
+    color: white;
+    height: 32px;
+    border-radius: 2px;
+    font-size: 16px;
+    &:hover {
+      background-color: $theme_hover;
+    }
+  }
+}
