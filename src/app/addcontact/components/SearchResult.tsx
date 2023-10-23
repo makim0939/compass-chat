@@ -18,27 +18,29 @@ const SearchResult = ({ loginUser, foundUser }: { loginUser: Profile; foundUser:
     const url = document.location.origin + "/api/connection";
     const data = { user1_id, user2_id };
     const connection = await postData<Connection>({ url, data });
+    console.log("create: connection", connection);
   };
 
   const createRoom = async () => {
     const url = document.location.origin + "/api/talkroom";
     const room = await postData<Room>({ url, data: {} });
+    console.log("create: room", room);
     setRoom(room);
   };
 
   const createRoomUser = async ({
     room_id,
     user_id,
-    usernames,
+    talkroom_name,
   }: {
     room_id: number;
     user_id: string;
-    usernames: string;
+    talkroom_name: string;
   }) => {
     const url = document.location.origin + "/api/room_user";
-    const data = { room_id, user_id, usernames };
+    const data = { room_id, user_id, talkroom_name };
     const room_user = await postData({ url, data });
-    console.log("room_user", room_user);
+    console.log("create: room_user", room_user);
   };
 
   const onClickUserItem = async (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -52,13 +54,14 @@ const SearchResult = ({ loginUser, foundUser }: { loginUser: Profile; foundUser:
     createRoomUser({
       room_id: room.id,
       user_id: loginUser.id,
-      usernames: loginUser.nickname + "/" + foundUser.nickname,
+      talkroom_name: foundUser.nickname!,
     });
     createRoomUser({
       room_id: room.id,
       user_id: foundUser.id,
-      usernames: foundUser.nickname + "/" + loginUser.nickname,
+      talkroom_name: loginUser.nickname!,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [room]);
 
   return (
