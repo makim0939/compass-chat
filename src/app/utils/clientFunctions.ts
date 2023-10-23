@@ -1,8 +1,11 @@
 export const fetchData = async <T>(url: string): Promise<T> => {
+  const key = process.env.NEXT_PUBLIC_APP_API_KEY!;
+  console.log(key);
   const res = await fetch(url, {
     cache: "no-cache",
-    headers: { "x-api-key": process.env.API_KEY as string },
+    headers: { "x-api-key": key },
   });
+
   const { data } = await res.json();
   return data;
 };
