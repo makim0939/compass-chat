@@ -1,7 +1,8 @@
+import { MessageData } from "@/app/types/database.types";
 import { fetchData } from "@/app/utils/clientFunctions";
-import { useQuery } from "@tanstack/react-query";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
-const useMessages = (room_id: number) =>
+const useMessages = (room_id: number): UseQueryResult<MessageData[]> =>
   useQuery({
     queryKey: ["messages", room_id],
     queryFn: async () => {

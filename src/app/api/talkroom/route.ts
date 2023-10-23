@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 
 export const POST = async (req: Request, res: NextResponse) => {
   try {
-    console.log(req.headers.get("x-api-key"));
     if (req.headers.get("x-api-key") !== process.env.API_KEY) throw new Error("Invalid API key");
     const { data, error } = await supabase.from("room").insert({}).select().single();
     if (error) throw error;

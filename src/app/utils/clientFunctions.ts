@@ -1,9 +1,7 @@
 export const fetchData = async <T>(url: string): Promise<T> => {
-  const key = process.env.NEXT_PUBLIC_APP_API_KEY!;
-  console.log(key);
   const res = await fetch(url, {
     cache: "no-cache",
-    headers: { "x-api-key": key },
+    headers: { "x-api-key": process.env.NEXT_PUBLIC_APP_API_KEY! },
   });
 
   const { data } = await res.json();
@@ -14,7 +12,7 @@ export const postData = async <T>({ url, data }: { url: string; data: any }): Pr
   const res = await fetch(url, {
     method: "POST",
     cache: "no-cache",
-    headers: { "x-api-key": process.env.API_KEY as string },
+    headers: { "x-api-key": process.env.NEXT_PUBLIC_APP_API_KEY! },
     body: JSON.stringify(data),
   });
   const { data: res_data } = await res.json();
@@ -25,7 +23,7 @@ export const putData = async <T>({ url, data }: { url: string; data: any }): Pro
   const res = await fetch(url, {
     method: "PUT",
     cache: "no-cache",
-    headers: { "x-api-key": process.env.API_KEY as string },
+    headers: { "x-api-key": process.env.NEXT_PUBLIC_APP_API_KEY! },
     body: JSON.stringify(data),
   });
   const { data: res_data } = await res.json();
@@ -36,7 +34,7 @@ export const deleteData = async <T>({ url }: { url: string }): Promise<T> => {
   const res = await fetch(url, {
     method: "DELETE",
     cache: "no-cache",
-    headers: { "x-api-key": process.env.API_KEY as string },
+    headers: { "x-api-key": process.env.NEXT_PUBLIC_APP_API_KEY! },
   });
   const { message } = await res.json();
   return message;
