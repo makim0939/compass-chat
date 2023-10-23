@@ -1,11 +1,11 @@
 import supabase from "@/app/utils/supabase";
 import { NextResponse } from "next/server";
 
-//ユーザIDからユーザプロフィールを取得
+//emailからユーザ情報を取得
 export const GET = async (req: Request) => {
-  const user2_id = req.url.split("user2_id/")[1];
+  const email = req.url.split("email/")[1];
   try {
-    const { data, error } = await supabase.from("connection").select("*").eq("user2_id", user2_id);
+    const { data, error } = await supabase.from("profile").select("*").eq("email", email).single();
     if (error) throw error;
     return NextResponse.json({ message: "Success", data }, { status: 200 });
   } catch (error) {
