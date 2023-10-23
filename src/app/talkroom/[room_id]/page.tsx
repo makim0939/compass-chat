@@ -18,6 +18,7 @@ import Link from "next/link";
 import Message from "./components/Message";
 import useMessageScroll from "./hooks/useMessageScroll";
 import MessageForm from "./components/MessageForm";
+import Compass from "@/app/compass/Compass";
 
 const TalkRoom = ({ params }: { params: { room_id: number } }) => {
   const [loginUser] = useAtom(loginUserAtom);
@@ -67,6 +68,7 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
       if (!channel) return;
       unsubscribeRealTimeListener(channel);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -93,8 +95,7 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
               </span>
             </header>
             {members && !isMembersLoading && (
-              // <Compass room_id={params.room_id} member={members[0]} />
-              <></>
+              <Compass room_id={params.room_id} member={members[0]} />
             )}
 
             <main className={styles.main}>
