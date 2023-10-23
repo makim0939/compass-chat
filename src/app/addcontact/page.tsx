@@ -19,7 +19,7 @@ const AddContact = () => {
   const [loginUser] = useAtom(loginUserAtom);
   const { data: contacts, isLoading: isContactsLoading } = useContact(loginUser?.id);
   if (!loginUser) throw new Error("loginUser is undefined");
-  const [searchResults, setSearchResults] = useState<Profile[]>([]);
+  const [searchResults, setSearchResults] = useState<Profile[] | null>(null);
   const [placeholder, setPlaceholder] = useState<string>("ニックネーム");
 
   const {
