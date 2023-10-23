@@ -9,9 +9,9 @@ export const GET = async (req: Request) => {
     const { data, error } = await supabase.from("message").select("*").eq("room_id", room_id);
     if (error) throw error;
     return NextResponse.json({ message: "Success", data }, { status: 200 });
-  } catch (error) {
+  } catch (error: any) {
     if (error instanceof Error)
-      return NextResponse.json({ message: "Error", error }, { status: 401 });
+      return NextResponse.json({ message: error.message, error }, { status: 401 });
     return NextResponse.json({ message: "Error", error }, { status: 500 });
   }
 };
