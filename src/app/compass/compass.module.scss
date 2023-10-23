@@ -1,0 +1,25 @@
+.compass_wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  .compass_container {
+    width: 80px;
+    height: 80px;
+    margin: 8px 16px;
+    border-radius: 50%;
+    background-color: hsl(0, 0%, 87%);
+  }
+  .compass_needle {
+    width: 80px;
+    height: 80px;
+  }
+}
+.compass_button {
+  position: fixed;
+  width: 6vh;
+  height: 6vh;
+  top: 0;
+  right: 0;
+  margin: 1vh 16px;
+}
