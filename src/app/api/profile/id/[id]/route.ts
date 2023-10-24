@@ -7,11 +7,10 @@ export const GET = async (req: Request) => {
   try {
     if (req.headers.get("x-api-key") !== process.env.API_KEY) throw new Error("Invalid API key");
     const { data, error } = await supabase.from("profile").select("*").eq("id", id).single();
-    if (error) throw error;
     return NextResponse.json({ message: "Success", data }, { status: 200 });
   } catch (error: any) {
     if (error instanceof Error)
       return NextResponse.json({ message: error.message, error }, { status: 401 });
-    return NextResponse.json({ message: "Error", error }, { status: 500 });
+    return NextResponse.json({ message: "Error", data: null }, { status: 500 });
   }
 };

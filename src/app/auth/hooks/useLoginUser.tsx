@@ -6,10 +6,10 @@ import { Profile } from "@/app/types/database.types";
 import { fetchData } from "@/app/utils/clientFunctions";
 import { set } from "react-hook-form";
 
-const getUser = async (id: string): Promise<Profile> => {
+const getUser = async (id: string): Promise<Profile | null> => {
   console.log("fetch loginUser");
   const url = document.location.origin + "/api/profile/id/" + id;
-  const loginUser = await fetchData<Profile>(url);
+  const loginUser = await fetchData<Profile | null>(url);
   return loginUser;
 };
 
