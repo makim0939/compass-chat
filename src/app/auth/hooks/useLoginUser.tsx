@@ -5,23 +5,29 @@ import { Session } from "@supabase/supabase-js";
 import { Profile } from "@/app/types/database.types";
 import { fetchData } from "@/app/utils/clientFunctions";
 import { set } from "react-hook-form";
+import supabase from "@/app/utils/supabase";
 
-const getUser = async (id: string): Promise<Profile | null> => {
-  console.log("fetch loginUser");
-  const url = document.location.origin + "/api/profile/id/" + id;
-  const loginUser = await fetchData<Profile | null>(url);
-  return loginUser;
-};
-
-const useLoginUser = (session: Session | undefined): UseQueryResult<Profile> =>
-  useQuery({
-    queryKey: ["loginUser", session?.user?.id],
-    queryFn: async () => {
-      const loginUser = await getUser(session!.user.id);
+const useLoginUser = (session: Session | undefined): UseQueryResult<Profile | null> => {
+  const fetchUserById = async () => {
+    try {
+      const { data: loginUser, error } = await supabase
+        .from("profile")
+        .select("*")
+        .eq("id", session!.user.id)
+        .single();
       return loginUser;
-    },
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  return useQuery({
+    queryKey: ["loginUser", session?.user?.id],
+    queryFn: fetchUserById,
     staleTime: Infinity,
     enabled: !!session,
   });
+};
 
 export default useLoginUser;
