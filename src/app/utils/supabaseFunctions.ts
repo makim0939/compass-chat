@@ -1,4 +1,3 @@
-import { Message } from "react-hook-form";
 import { Profile } from "../types/database.types";
 import {
   Connection,
@@ -240,4 +239,13 @@ export const selectConnectionsByUserId = async (user_id: string): Promise<Connec
 //insert connection
 export const insertConnection = async (
   insertData: ConnectionInsertProps,
-): Promise<Connection | null> => {};
+): Promise<Connection | null> => {
+  try {
+    const { data, error } = await supabase.from("connection").insert(insertData).select().single();
+    if (error) throw error;
+    return data as Connection;
+  } catch (error: any) {
+    console.log(error);
+    return null;
+  }
+};

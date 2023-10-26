@@ -1,4 +1,3 @@
-import { type } from "os";
 import { Database } from "./database.types";
 
 export type Profile = Database["public"]["Tables"]["profile"]["Row"];
@@ -12,3 +11,4 @@ export type MessageInsertProps = Database["public"]["Tables"]["message"]["Insert
 export type GeolocationData = Database["public"]["Tables"]["geolocation"]["Row"];
 export type GeolocationInsertProps = Database["public"]["Tables"]["geolocation"]["Insert"];
 export type Connection = Database["public"]["Tables"]["connection"]["Row"];
+export type ConnectionInsertProps = Database["public"]["Tables"]["connection"]["Insert"];
