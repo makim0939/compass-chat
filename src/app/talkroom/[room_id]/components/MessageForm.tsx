@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { postData } from "@/app/utils/clientFunctions";
 import styles from "../talkroom.module.scss";
 import { Profile, Room } from "@/app/types/database.types";
 import { useMessagesMutation } from "../hooks/useMessagesMutation";

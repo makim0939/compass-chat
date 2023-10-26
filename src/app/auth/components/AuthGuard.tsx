@@ -5,8 +5,7 @@ import useSession from "../hooks/useSession";
 import useLoginUser from "../hooks/useLoginUser";
 import { loginUserAtom } from "@/app/atoms";
 import { useRouter } from "next/navigation";
-import { fetchData } from "@/app/utils/clientFunctions";
-import { Profile } from "@/app/types/database.types";
+import { selectProfileById } from "@/app/utils/supabaseFunctions";
 
 const AuthGuard = ({ children }: { children: React.ReactNode }) => {
   const { data: session, isLoading: isSessionLoading } = useSession();
@@ -17,8 +16,7 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const isExistProfile = async () => {
-      const url = document.location.origin + "/api/profile/id/" + session!.user.id;
-      const profile = await fetchData<Profile>(url);
+      const profile = selectProfileById(session!.user.id);
       if (!profile) return false;
       return true;
     };

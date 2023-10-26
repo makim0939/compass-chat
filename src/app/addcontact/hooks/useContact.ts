@@ -2,17 +2,15 @@ import React from "react";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { fetchData } from "@/app/utils/clientFunctions";
 import { Connection } from "@/app/types/types";
+import { selectConnectionsByUserId } from "@/app/utils/supabaseFunctions";
 
-const useContact = (user_id: string | undefined): UseQueryResult<Connection[]> =>
-  useQuery({
+const useContact = (user_id: string | undefined): UseQueryResult<Connection[]> => {
+  return useQuery({
     queryKey: ["contact", user_id],
-    queryFn: async () => {
-      const url = document.location.origin + "/api/connection/user_id/" + user_id;
-      const contact = await fetchData(url);
-      return contact;
-    },
+    queryFn: async () => selectConnectionsByUserId(user_id!),
     staleTime: Infinity,
     enabled: !!user_id,
   });
+};
 
 export default useContact;

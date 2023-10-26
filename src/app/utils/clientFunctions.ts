@@ -1,4 +1,5 @@
 export const fetchData = async <T>(url: string): Promise<T> => {
+  console.log("fetchData");
   const res = await fetch(url, {
     cache: "no-cache",
     headers: { "x-api-key": process.env.NEXT_PUBLIC_APP_API_KEY! },
@@ -9,6 +10,7 @@ export const fetchData = async <T>(url: string): Promise<T> => {
 };
 
 export const postData = async <T>({ url, data }: { url: string; data: any }): Promise<T> => {
+  console.log("postData");
   const res = await fetch(url, {
     method: "POST",
     cache: "no-cache",
@@ -20,6 +22,7 @@ export const postData = async <T>({ url, data }: { url: string; data: any }): Pr
 };
 
 export const putData = async <T>({ url, data }: { url: string; data: any }): Promise<T> => {
+  console.log("putData");
   const res = await fetch(url, {
     method: "PUT",
     cache: "no-cache",
@@ -31,6 +34,7 @@ export const putData = async <T>({ url, data }: { url: string; data: any }): Pro
 };
 
 export const deleteData = async <T>({ url }: { url: string }): Promise<T> => {
+  console.log("deleteData");
   const res = await fetch(url, {
     method: "DELETE",
     cache: "no-cache",

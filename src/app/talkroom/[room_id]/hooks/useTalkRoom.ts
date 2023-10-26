@@ -1,15 +1,11 @@
 import { Room } from "@/app/types/types";
-import { fetchData } from "@/app/utils/clientFunctions";
+import { selectTalkRoomById } from "@/app/utils/supabaseFunctions";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 const useTalkRoom = (roomId: number): UseQueryResult<Room> =>
   useQuery({
     queryKey: ["talkroom", roomId],
-    queryFn: async () => {
-      const url = document.location.origin + "/api/talkroom/room_id/" + roomId;
-      const talkRoom = await fetchData(url);
-      return talkRoom;
-    },
+    queryFn: async () => selectTalkRoomById(roomId),
     staleTime: Infinity,
   });
 
