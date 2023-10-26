@@ -73,7 +73,7 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
 
   return (
     <>
-      {talkRoom && messages && (
+      {talkRoom && messages && members && (
         <>
           <div className={styles.wrapper}>
             <header className={styles.header}>

@@ -51,6 +51,7 @@ const CreateProfile = () => {
     //profileが存在したらトップページへ
     checkProfileExist();
     setUserId(session.user.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);
 
   return (

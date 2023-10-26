@@ -4,11 +4,11 @@ import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { loginUserAtom } from "../atoms";
-import { fetchData } from "../utils/clientFunctions";
 import { Profile } from "../types/database.types";
 import styles from "./addcontact.module.scss";
 import useContact from "./hooks/useContact";
 import SearchResult from "./components/SearchResult";
+import { selectProfilesByNickname } from "../utils/supabaseFunctions";
 
 type SearchUserFormInputs = {
   searchInput: string;
@@ -70,8 +70,8 @@ const AddContact = () => {
   };
 
   const searchUserByNickname = async (value: string) => {
-    const url = document.location.origin + "/api/profile/nickname/" + value;
-    const foundUsers = await fetchData<Profile[]>(url);
+    const foundUsers = await selectProfilesByNickname(value);
+    if (!foundUsers) return;
     const results = foundUsers.filter((foundUser: Profile) => {
       if (foundUser.id === loginUser.id) return false;
       if (checkIsAlreadyConnected(foundUser)) return false;

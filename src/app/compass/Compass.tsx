@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import useGeolocation from "./hooks/useGeolocation";
 import { useAtom } from "jotai";
 import { useQueryClient } from "@tanstack/react-query";
-import { deleteData, fetchData, postData, putData } from "@/app/utils/clientFunctions";
+import { deleteData } from "@/app/utils/clientFunctions";
 import { GeolocationData, MessageData, Profile, Room } from "@/app/types/database.types";
 import useCompass from "./hooks/useCompass";
 import {
@@ -15,6 +15,7 @@ import { RealtimePostgresChangesPayload } from "@supabase/supabase-js";
 import { loginUserAtom } from "../atoms";
 import styles from "./compass.module.scss";
 import Image from "next/image";
+import { selectGeolocationByUserId, upsertGeolocation } from "../utils/supabaseFunctions";
 
 const COMPASS_IMG = "/assets/compass.png";
 const COMPASS_BUTTON_IMG = "../../assets/compass_button.svg";
@@ -60,16 +61,15 @@ const Compass = ({ room_id, member }: { room_id: number; member: Profile }) => {
     const url = document.location.origin + "/api/compass/geolocation/user_id/" + loginUser.id;
     const data = {
       user_id: loginUser.id,
-      latitude: myLocation?.lat,
-      longitude: myLocation?.lng,
+      lat: myLocation?.lat,
+      lng: myLocation?.lng,
     };
-    const res = await postData({ url, data });
+    const res = await upsertGeolocation(data);
     return res;
   };
 
   const getMemberLocation = async (): Promise<LocationData | null> => {
-    const url = document.location.origin + "/api/compass/geolocation/user_id/" + member.id;
-    const res = await fetchData<GeolocationData>(url);
+    const res = await selectGeolocationByUserId(member.id);
     if (!res || !res.location) return null;
     const [lat, lng] = res.location.coordinates;
     setMemberLocation({ lat, lng });

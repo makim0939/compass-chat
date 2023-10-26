@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { LocationData } from "../Compass";
-import { clear } from "console";
 
 const useGeolocation = (isUseCompass: boolean) => {
   const [geolocation, setGeolocation] = useState<LocationData | null>(null);
