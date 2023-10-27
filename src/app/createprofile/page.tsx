@@ -8,6 +8,7 @@ import { fetchData, postData } from "../utils/clientFunctions";
 import { ProfileInsertProps } from "../types/types";
 import { useRouter } from "next/navigation";
 import styles from "./createprofile.module.scss";
+import { insertProfile, selectProfileById } from "../utils/supabaseFunctions";
 
 const CreateProfile = () => {
   const { data: session } = useSession();
@@ -24,21 +25,15 @@ const CreateProfile = () => {
     formState: { errors },
   } = useForm<ProfileInsertProps>();
 
-  const createProfile = async (data: ProfileInsertProps) => {
-    const url = document.location.origin + "/api/profile";
-    const profile = await postData({ url, data });
-    return profile;
-  };
   const isValid = async (data: ProfileInsertProps) => {
     if (!userId) return;
     data.id = userId;
-    const profile = await createProfile(data);
+    const profile = await insertProfile(data);
     router.replace("/");
   };
 
   const checkProfileExist = async () => {
-    const url = document.location.origin + "/api/profile/id/" + session!.user.id;
-    const profile = await fetchData(url);
+    const profile = await selectProfileById(session!.user.id);
     if (profile) {
       router.replace("/");
     }
@@ -47,7 +42,6 @@ const CreateProfile = () => {
 
   useEffect(() => {
     if (!session) return;
-    console.log("session");
     //profileが存在したらトップページへ
     checkProfileExist();
     setUserId(session.user.id);
