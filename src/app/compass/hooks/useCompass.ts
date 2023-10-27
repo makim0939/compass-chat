@@ -12,7 +12,7 @@ const calcDirection = ({
 }) => {
   const dlat = memberLocation.lat - myLocation.lat;
   const dlng = memberLocation.lng - myLocation.lng;
-  const degree = 90 - Math.atan2(dlng, dlat) * (180 / Math.PI);
+  const degree = 90 - Math.atan2(dlat, dlng) * (180 / Math.PI);
 
   if (degree < 0) return 360 + degree - heading;
   return degree - heading;

@@ -15,7 +15,11 @@ import { RealtimePostgresChangesPayload } from "@supabase/supabase-js";
 import { loginUserAtom } from "../atoms";
 import styles from "./compass.module.scss";
 import Image from "next/image";
-import { selectGeolocationByUserId, upsertGeolocation } from "../utils/supabaseFunctions";
+import {
+  deleteGeolocation,
+  selectGeolocationByUserId,
+  upsertGeolocation,
+} from "../utils/supabaseFunctions";
 
 const COMPASS_IMG = "/assets/compass.png";
 const COMPASS_BUTTON_IMG = "../../assets/compass_button.svg";
@@ -58,7 +62,6 @@ const Compass = ({ room_id, member }: { room_id: number; member: Profile }) => {
 
   const sendLocationData = async () => {
     if (!isUseCompass) return;
-    const url = document.location.origin + "/api/compass/geolocation/user_id/" + loginUser.id;
     const data = {
       user_id: loginUser.id,
       lat: myLocation?.lat,
@@ -77,8 +80,7 @@ const Compass = ({ room_id, member }: { room_id: number; member: Profile }) => {
     return { lat, lng };
   };
   const clearMyLocation = async () => {
-    const url = document.location.origin + "/api/compass/geolocation/user_id/" + loginUser.id;
-    const res = await deleteData({ url });
+    const res = await deleteGeolocation(loginUser.id);
     console.log("clearMyLocation");
     setPrevMyLocation(null);
     return res;
@@ -174,6 +176,25 @@ const Compass = ({ room_id, member }: { room_id: number; member: Profile }) => {
                     transition={{ duration: 0 }}
                     className={styles.compass_needle}
                   />
+                </div>
+                <div>
+                  <p>
+                    lat: <br />
+                    my→{Math.round(myLocation?.lat! * 10000000000)} <br />
+                    pr→ {Math.round(memberLocation?.lat! * 10000000000)} <br />
+                    d→{" "}
+                    {Math.round(memberLocation?.lat! * 10000000000) -
+                      Math.round(myLocation?.lat! * 10000000000)}{" "}
+                    <br />
+                    lng: <br />
+                    my→{Math.round(myLocation?.lng! * 10000000000)} <br />
+                    pr→ {Math.round(memberLocation?.lng! * 10000000000)} <br />
+                    d→{" "}
+                    {Math.round(memberLocation?.lng! * 10000000000) -
+                      Math.round(myLocation?.lng! * 10000000000)}{" "}
+                    <br />
+                  </p>
+                  <p></p>
                 </div>
               </>
             )}
