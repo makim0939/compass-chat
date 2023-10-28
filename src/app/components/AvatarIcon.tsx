@@ -4,21 +4,20 @@ import { loginUserAtom } from "../atoms";
 import Image from "next/image";
 import supabase from "../utils/supabase";
 import styles from "./avatar.module.scss";
+import { Profile } from "../types/types";
 
-const Avatar = ({ size }: { size: number }) => {
-  const [loginUser] = useAtom(loginUserAtom);
+const AvatarIcon = ({ size, user }: { size: number; user: Profile }) => {
   const [avatarUrl, setAvatarUrl] = useState("");
   useEffect(() => {
     const getAvatarUrl = async () => {
-      if (!loginUser) return;
       const {
         data: { publicUrl },
-      } = supabase.storage.from("avatar_image").getPublicUrl(loginUser.avatar_url);
+      } = supabase.storage.from("avatar_image").getPublicUrl(user.avatar_url);
       setAvatarUrl(publicUrl);
       console.log(publicUrl);
     };
     getAvatarUrl();
-  }, []);
+  }, [user]);
 
   return (
     <>
@@ -36,4 +35,4 @@ const Avatar = ({ size }: { size: number }) => {
   );
 };
 
-export default Avatar;
+export default AvatarIcon;

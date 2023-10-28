@@ -6,6 +6,8 @@ import TalkRoomsList from "./TalkRoomsList";
 import styles from "../home.module.scss";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import AvatarIcon from "@/app/components/AvatarIcon";
+import SetAvatar from "../user_settings/SetAvatar";
 const logoutButton = "../assets/logout_button.svg";
 
 const Home = () => {
@@ -24,10 +26,13 @@ const Home = () => {
 
   return (
     <>
+      <SetAvatar />
       <header className={styles.header}>
         <div className={styles.header_left}></div>
         <div className={styles.my_profile}>
-          <div className={styles.icon}></div>
+          <div className={styles.icon}>
+            <AvatarIcon size={41} user={loginUser} />
+          </div>
           <h2>{loginUser.nickname}</h2>
         </div>
         <div className={styles.header_buttons}>

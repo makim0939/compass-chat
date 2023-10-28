@@ -125,7 +125,7 @@ export interface Database {
           id?: string;
           nickname?: string | null;
           unique_name?: string | null;
-          avatar_url: string;
+          avatar_url?: string | null;
         };
         Relationships: [
           {

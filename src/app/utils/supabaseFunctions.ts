@@ -7,6 +7,7 @@ import {
   MessageData,
   MessageInsertProps,
   ProfileInsertProps,
+  ProfileUpdateProps,
   Room,
   RoomInsertProps,
   RoomUserRelation,
@@ -62,6 +63,27 @@ export const insertProfile = async (insertData: ProfileInsertProps): Promise<Pro
     const { data: profile, error } = await supabase
       .from("profile")
       .insert(insertData)
+      .select()
+      .single();
+    return profile as Profile;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const updateProfile = async ({
+  id,
+  updateData,
+}: {
+  id: string;
+  updateData: ProfileUpdateProps;
+}): Promise<Profile | null> => {
+  try {
+    const { data: profile, error } = await supabase
+      .from("profile")
+      .update(updateData)
+      .eq("id", id)
       .select()
       .single();
     return profile as Profile;

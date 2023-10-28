@@ -1,5 +1,6 @@
 import { loginUserAtom } from "@/app/atoms";
 import supabase from "@/app/utils/supabase";
+import { updateProfile } from "@/app/utils/supabaseFunctions";
 import { useAtom } from "jotai";
 import React from "react";
 import { set } from "react-hook-form";
@@ -17,14 +18,19 @@ const SetAvatar = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!loginUser) return;
     console.log(file);
     if (!file) return;
+    const { error: delerror } = await supabase.storage
+      .from("avatar_image")
+      .remove([loginUser.avatar_url]);
     const { data, error } = await supabase.storage
       .from("avatar_image")
       .upload(pathname, file, { cacheControl: "3600", upsert: true });
     if (error) throw new Error(error.message);
     console.log(data.path);
     const profileData = { avatar_url: data.path };
+    updateProfile({ id: loginUser.id, updateData: profileData });
   };
 
   return (
