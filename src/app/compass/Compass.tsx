@@ -177,7 +177,7 @@ const Compass = ({ room_id, member }: { room_id: number; member: Profile }) => {
                     className={styles.compass_needle}
                   />
                 </div>
-                <div>
+                {/* <div>
                   <p>
                     lat: <br />
                     my→{Math.round(myLocation?.lat! * 10000000000)} <br />
@@ -194,8 +194,7 @@ const Compass = ({ room_id, member }: { room_id: number; member: Profile }) => {
                       Math.round(myLocation?.lng! * 10000000000)}{" "}
                     <br />
                   </p>
-                  <p></p>
-                </div>
+                </div> */}
               </>
             )}
           </div>
