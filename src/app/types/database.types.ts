@@ -111,18 +111,21 @@ export interface Database {
           id: string;
           nickname: string | null;
           unique_name: string | null;
+          avatar_url: string;
         };
         Insert: {
           created_at?: string;
           id: string;
           nickname?: string | null;
           unique_name?: string | null;
+          avatar_url: string;
         };
         Update: {
           created_at?: string;
           id?: string;
           nickname?: string | null;
           unique_name?: string | null;
+          avatar_url: string;
         };
         Relationships: [
           {
