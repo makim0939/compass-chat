@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>
