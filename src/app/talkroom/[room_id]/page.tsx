@@ -107,6 +107,7 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
                       message={message}
                       talkRoom={talkRoom}
                       loginUser={loginUser}
+                      sentUser={members.find((member) => member.id === message.sender_id)}
                     />
                   ))}
                   <div className={styles.scroll_ref} ref={scrollBottomRef}></div>

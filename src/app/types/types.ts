@@ -2,6 +2,7 @@ import { Database } from "./database.types";
 
 export type Profile = Database["public"]["Tables"]["profile"]["Row"];
 export type ProfileInsertProps = Database["public"]["Tables"]["profile"]["Insert"];
+export type ProfileUpdateProps = Database["public"]["Tables"]["profile"]["Update"];
 export type RoomUserRelation = Database["public"]["Tables"]["room_user"]["Row"];
 export type RoomUserRelationInsertProps = Database["public"]["Tables"]["room_user"]["Insert"];
 export type Room = Database["public"]["Tables"]["room"]["Row"];
