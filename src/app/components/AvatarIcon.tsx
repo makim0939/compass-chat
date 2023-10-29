@@ -1,6 +1,5 @@
+"use client";
 import React, { useEffect, useState } from "react";
-import { useAtom } from "jotai";
-import { loginUserAtom } from "../atoms";
 import Image from "next/image";
 import supabase from "../utils/supabase";
 import styles from "./avatar.module.scss";
@@ -22,14 +21,14 @@ const AvatarIcon = ({ size, user }: { size: number; user: Profile }) => {
   return (
     <>
       {avatarUrl !== "" && (
-        <button className={styles.button} style={{ width: size, height: size }}>
+        <div className={styles.container} style={{ width: size, height: size }}>
           <img
             alt=""
             src={avatarUrl}
             className={styles.image}
             style={{ width: size, height: size }}
           ></img>
-        </button>
+        </div>
       )}
     </>
   );

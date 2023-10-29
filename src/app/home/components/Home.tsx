@@ -7,20 +7,16 @@ import styles from "../home.module.scss";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import AvatarIcon from "@/app/components/AvatarIcon";
-import SetAvatar from "../user_settings/SetAvatar";
 const ADD_BUTTON = "../assets/add_button.svg";
 const SETTINGS_BUTTON = "../assets/settings_button.svg";
-const logoutButton = "../assets/logout_button.svg";
-
+export const HOME_AVATAR_SIZE = 45;
 const Home = () => {
   const [loginUser] = useAtom(loginUserAtom);
   if (!loginUser) throw new Error("loginUser is undefined");
   const router = useRouter();
 
-  const onClickLogout = () => {
-    const logout = window.confirm("ログアウトしますか？");
-    if (!logout) return;
-    router.replace("/auth/signout");
+  const onClickUserSettings = () => {
+    router.push("/user_settings");
   };
   const onClickAddConnection = () => {
     router.push("/addcontact");
@@ -28,7 +24,6 @@ const Home = () => {
 
   return (
     <>
-      <SetAvatar />
       <header className={styles.header}>
         <div className={styles.header_buttons}>
           <button className={styles.add_connection_button} onClick={onClickAddConnection}>
@@ -40,7 +35,7 @@ const Home = () => {
               height={36}
             />
           </button>
-          <button onClick={onClickLogout} className={styles.settings_button}>
+          <button onClick={onClickUserSettings} className={styles.settings_button}>
             <Image
               src={SETTINGS_BUTTON}
               alt=""
@@ -52,7 +47,7 @@ const Home = () => {
         </div>
         <div className={styles.my_profile}>
           <div className={styles.icon}>
-            <AvatarIcon size={41} user={loginUser} />
+            <AvatarIcon size={HOME_AVATAR_SIZE} user={loginUser} />
           </div>
           <h2>{loginUser.nickname}</h2>
         </div>

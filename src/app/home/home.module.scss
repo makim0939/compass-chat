@@ -1,3 +1,5 @@
+$avatar_size: 45px;
+$icon_size: 3.8em;
 .header {
   display: flex;
   flex-direction: column;
@@ -13,8 +15,8 @@
     justify-content: center;
   }
   .icon {
-    width: 41px;
-    height: 41px;
+    width: $avatar_size;
+    height: $avatar_size;
     border-radius: 50%;
     margin: 0 8px;
     background-color: #d0d0d0;
@@ -72,8 +74,8 @@
   align-items: center;
   justify-content: flex-start;
   .icon {
-    width: 41px;
-    height: 41px;
+    width: $avatar_size;
+    height: $avatar_size;
     border-radius: 50%;
     margin: 4px 8px 4px 16px;
     background-color: #d0d0d0;

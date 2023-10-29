@@ -1,11 +1,12 @@
+"use client";
 import { loginUserAtom } from "@/app/atoms";
 import supabase from "@/app/utils/supabase";
 import { updateProfile } from "@/app/utils/supabaseFunctions";
 import { useAtom } from "jotai";
 import React from "react";
-import { set } from "react-hook-form";
+import styles from "./userSettings.module.scss";
 
-const SetAvatar = () => {
+const AvatarIconForm = () => {
   const [loginUser] = useAtom(loginUserAtom);
   const [file, setFile] = React.useState<File | null>(null);
   const [pathname, setPathname] = React.useState("");
@@ -34,13 +35,16 @@ const SetAvatar = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type="file" onChange={changeInput} />
-        <button type="submit">sousin</button>
+    <>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <h3>プロフィール画像を設定</h3>
+        <input type="file" onChange={changeInput} className={styles.file_input} />
+        <button type="submit" className={styles.submit_button}>
+          設定
+        </button>
       </form>
-    </div>
+    </>
   );
 };
 
-export default SetAvatar;
+export default AvatarIconForm;
