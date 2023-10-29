@@ -80,7 +80,7 @@ $theme_pale: #a0f0e5;
   background-color: white;
   .form_contents {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
     height: 36px;
@@ -96,6 +96,7 @@ $theme_pale: #a0f0e5;
     .input_text {
       width: calc(100% - 72px);
       height: 90%;
+      margin: 0 8px;
       background-color: #f0f0f0;
       border: none;
       border-radius: 5px;

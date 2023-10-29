@@ -32,7 +32,7 @@ const MessageForm = ({ talkRoom, loginUser }: { talkRoom: Room; loginUser: Profi
     <div className={styles.form_container}>
       <form onSubmit={handleSubmit(sendMessage)} className={styles.form} name="messageForm">
         <div className={styles.form_contents}>
-          <span className={styles.input_left_space}></span>
+          {/* <span className={styles.input_left_space}></span> */}
           <span className={styles.input_container}>
             <input
               {...register("message", { required: true })}
