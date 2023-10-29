@@ -12,34 +12,36 @@ $theme_pale: #a0f0e5;
     Roboto,
     "Helvetica Neue",
     sans-serif;
-  font-weight: bold;
   font-size: 16px;
   color: #252528;
+}
+.container {
+  max-width: 540px;
+  width: 70%;
+  margin: 96px auto;
+  padding: 8px 32px 32px 32px;
+  box-shadow: 8px 8px 12px #f0f0f0;
+  border: solid 1px #f5f5f5;
 }
 .index {
   display: flex;
   align-items: center;
   justify-content: center;
-  .link {
-    text-decoration: none;
-    .back_ward_button {
-      margin: 4px 8px;
-      text-align: start;
-      color: #2540d0;
-    }
-  }
+}
+.link {
+  text-decoration: none;
+  font-size: 14px;
+  color: #252528;
 }
 
 .title {
   text-align: center;
 }
 .search_form {
-  width: 70%;
-  margin: 96px auto 32px auto;
+  width: 100%;
   .input_wrapper {
-    margin: 32px 0 32px 0;
     .input_row {
-      margin: 8px 0;
+      margin: 16px 0;
       text-align: left;
     }
     .input_text {
@@ -86,4 +88,10 @@ $theme_pale: #a0f0e5;
       background-color: $theme_hover;
     }
   }
+}
+
+.search_result_container {
+  width: 100%;
+  margin: 32px 0;
+  border-top: #f0f0f0 solid 1px;
 }

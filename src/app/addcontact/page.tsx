@@ -86,56 +86,58 @@ const AddContact = () => {
 
   return (
     <div className={styles.wrapper}>
-      <form onSubmit={handleSubmit(isValid)} className={styles.search_form}>
-        <div className={styles.index}>
-          <Link href={"/"} className={styles.link}>
-            <h2 className={styles.back_ward_button}>&lt;</h2>
-          </Link>
-          <h2 className={styles.title}>連絡先を追加</h2>
-        </div>
-        <div className={styles.input_wrapper}>
-          <div className={styles.input_row}>
-            <span>
-              <label htmlFor="">ユーザを検索</label>
-              <select {...register("mode")} name="mode" className={styles.input_select}>
-                <option value="nickname">ニックネーム</option>
-                <option value="email">メールアドレス</option>
-                <option value="unique_name">ユーザID</option>
-              </select>
-            </span>
-            <input
-              {...register("searchInput", { required: true })}
-              type="text"
-              name="searchInput"
-              placeholder={placeholder}
-              className={styles.input_text}
-            />
+      <div className={styles.container}>
+        <Link href={"/"} className={styles.link}>
+          <p className={styles.back_ward_button}>ホームに戻る</p>
+        </Link>
+        <form onSubmit={handleSubmit(isValid)} className={styles.search_form}>
+          <div className={styles.index}>
+            <h3 className={styles.title}>連絡先を追加</h3>
           </div>
-        </div>
-        <div className={styles.form_buttons}>
-          <span></span>
-          <span>
-            <button className={styles.button} disabled={isContactsLoading}>
-              検索
-            </button>
-          </span>
-        </div>
-      </form>
-      {loginUser && searchResults && (
-        <div>
-          {searchResults!.length !== 0 ? (
-            <ul>
-              <>
-                {searchResults.map((user) => (
-                  <SearchResult key={user.id} loginUser={loginUser} foundUser={user} />
-                ))}
-              </>
-            </ul>
-          ) : (
-            <p>ユーザが見つかりませんでした。</p>
-          )}
-        </div>
-      )}
+          <div className={styles.input_wrapper}>
+            <div className={styles.input_row}>
+              <span>
+                <label htmlFor="">ユーザを検索</label>
+                <select {...register("mode")} name="mode" className={styles.input_select}>
+                  <option value="nickname">ニックネーム</option>
+                  <option value="email">メールアドレス</option>
+                  <option value="unique_name">ユーザID</option>
+                </select>
+              </span>
+              <input
+                {...register("searchInput", { required: true })}
+                type="text"
+                name="searchInput"
+                placeholder={placeholder}
+                className={styles.input_text}
+              />
+            </div>
+          </div>
+          <div className={styles.form_buttons}>
+            <span></span>
+            <span>
+              <button className={styles.button} disabled={isContactsLoading}>
+                検索
+              </button>
+            </span>
+          </div>
+        </form>
+        {loginUser && searchResults && (
+          <div className={styles.search_result_container}>
+            {searchResults!.length !== 0 ? (
+              <ul>
+                <>
+                  {searchResults.map((user) => (
+                    <SearchResult key={user.id} loginUser={loginUser} foundUser={user} />
+                  ))}
+                </>
+              </ul>
+            ) : (
+              <p>ユーザが見つかりませんでした。</p>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
