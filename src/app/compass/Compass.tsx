@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import useGeolocation from "./hooks/useGeolocation";
 import { useAtom } from "jotai";
@@ -29,14 +29,21 @@ export type LocationData = {
   lng: number;
 };
 
-const Compass = ({ room_id, member }: { room_id: number; member: Profile }) => {
+const Compass = ({
+  loginUser,
+  room_id,
+  member,
+}: {
+  loginUser: Profile;
+  room_id: number;
+  member: Profile;
+}) => {
   const [isUseCompass, setIsUseCompass] = useState(false);
   const [memberLocation, setMemberLocation] = useState<LocationData | null>(null);
   const [prevMyLocation, setPrevMyLocation] = useState<LocationData | null>(null);
   const myLocation = useGeolocation(isUseCompass);
   const direction = useCompass({ myLocation, memberLocation }, isUseCompass);
   //ユーザ、部屋情報の取得
-  const [loginUser] = useAtom(loginUserAtom);
   if (!loginUser) throw new Error("loginUser is null");
   const handleClick = async () => {
     //Android
@@ -71,41 +78,41 @@ const Compass = ({ room_id, member }: { room_id: number; member: Profile }) => {
     return res;
   };
 
-  const getMemberLocation = async (): Promise<LocationData | null> => {
+  //memo::useEffectの中と外の両方で使うため、依存関係を明確にするためuseCallbackを使う
+  const getMemberLocation = useCallback(async (): Promise<LocationData | null> => {
     const res = await selectGeolocationByUserId(member.id);
     if (!res || !res.location) return null;
     const [lat, lng] = res.location.coordinates;
     setMemberLocation({ lat, lng });
-
     return { lat, lng };
-  };
-  const clearMyLocation = async () => {
+  }, [member.id, setMemberLocation]);
+
+  const clearMyLocation = useCallback(async () => {
     const res = await deleteGeolocation(loginUser.id);
     console.log("clearMyLocation");
     setPrevMyLocation(null);
     return res;
-  };
-
-  const fetchRealtimeDataCallback = (
-    payload: RealtimePostgresChangesPayload<{
-      [key: string]: any;
-    }>,
-  ) => {
-    console.log(payload);
-    if (payload.eventType === "INSERT" || payload.eventType === "UPDATE") {
-      const { user_id, location } = payload.new as GeolocationData;
-      if (!loginUser || !location) return;
-      const [lat, lng] = location.coordinates;
-      console.log({ lat, lng });
-      setMemberLocation({ lat, lng });
-    }
-    if (payload.eventType === "DELETE") {
-      setMemberLocation(null);
-    }
-  };
+  }, [loginUser.id]);
 
   useEffect(() => {
-    console.log(member.id);
+    const fetchRealtimeDataCallback = (
+      payload: RealtimePostgresChangesPayload<{
+        [key: string]: any;
+      }>,
+    ) => {
+      console.log(payload);
+      if (payload.eventType === "INSERT" || payload.eventType === "UPDATE") {
+        const { user_id, location } = payload.new as GeolocationData;
+        if (!loginUser || !location) return;
+        const [lat, lng] = location.coordinates;
+        console.log({ lat, lng });
+        setMemberLocation({ lat, lng });
+      }
+      if (payload.eventType === "DELETE") {
+        setMemberLocation(null);
+      }
+    };
+
     const listenerOptions: RealTimeListenerOptions = {
       channel: "geolocation" + member.id,
       filter: {
@@ -127,8 +134,7 @@ const Compass = ({ room_id, member }: { room_id: number; member: Profile }) => {
       if (channel) unsubscribeRealTimeListener(channel);
       clearMyLocation();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loginUser, member.id, setMemberLocation, getMemberLocation, clearMyLocation]);
 
   useEffect(() => {
     if (!myLocation) return;
