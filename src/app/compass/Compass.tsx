@@ -67,7 +67,7 @@ const Compass = ({
     clearMyLocation();
   };
 
-  const sendLocationData = async () => {
+  const sendLocationData = useCallback(async () => {
     if (!isUseCompass) return;
     const data = {
       user_id: loginUser.id,
@@ -76,7 +76,7 @@ const Compass = ({
     };
     const res = await upsertGeolocation(data);
     return res;
-  };
+  }, [isUseCompass, loginUser.id, myLocation?.lat, myLocation?.lng]);
 
   //memo::useEffectの中と外の両方で使うため、依存関係を明確にするためuseCallbackを使う
   const getMemberLocation = useCallback(async (): Promise<LocationData | null> => {
