@@ -149,8 +149,7 @@ const Compass = ({
     const res = sendLocationData();
     setPrevMyLocation(myLocation);
     console.log("prev", prevMyLocation);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [myLocation]);
+  }, [myLocation, prevMyLocation, sendLocationData]);
 
   return (
     <>
