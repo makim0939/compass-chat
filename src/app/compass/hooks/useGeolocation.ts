@@ -14,7 +14,7 @@ const useGeolocation = (isUseCompass: boolean) => {
     console.log("geolocation start");
     let id: number | null = null;
     if (isUseCompass) {
-      const id = navigator.geolocation.watchPosition((pos) => {
+      id = navigator.geolocation.watchPosition((pos) => {
         const crd = pos.coords;
         setGeolocation({ lat: crd.latitude, lng: crd.longitude });
       });
