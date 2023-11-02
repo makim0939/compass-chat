@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import useSession from "../auth/hooks/useSession";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { useAtom } from "jotai";
 import { loginUserAtom } from "../atoms";
 import { fetchData, postData } from "../utils/clientFunctions";
@@ -12,7 +12,7 @@ import { insertProfile, selectProfileById } from "../utils/supabaseFunctions";
 
 const CreateProfile = () => {
   const { data: session } = useSession();
-  const [userId, setUserId] = useState<string | null>(null);
+  const userId = session && session.user ? session.user.id : null;
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const router = useRouter();
 
@@ -32,21 +32,17 @@ const CreateProfile = () => {
     router.replace("/");
   };
 
-  const checkProfileExist = async () => {
-    const profile = await selectProfileById(session!.user.id);
-    if (profile) {
-      router.replace("/");
-    }
-    setIsChecked(true);
-  };
-
   useEffect(() => {
+    const checkProfileExist = async () => {
+      const profile = await selectProfileById(session!.user.id);
+      if (profile) {
+        router.replace("/");
+      }
+      setIsChecked(true);
+    };
     if (!session) return;
-    //profileが存在したらトップページへ
     checkProfileExist();
-    setUserId(session.user.id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session]);
+  }, [router, session, setIsChecked]);
 
   return (
     <>

@@ -23,14 +23,11 @@ import Compass from "@/app/compass/Compass";
 const TalkRoom = ({ params }: { params: { room_id: number } }) => {
   const [loginUser] = useAtom(loginUserAtom);
   if (!loginUser) throw new Error("loginUser is null");
-  //トークルームの取得
   const { data: talkRoom, isLoading: isTalkRoomRoading } = useTalkRoom(params.room_id);
-  //メンバーの取得
   const { data: members, isLoading: isMembersLoading } = useMembers({
     room_id: params.room_id,
     loginUserId: loginUser.id,
   });
-  //メッセージの取得
   const { data: messages, isLoading: isMessagesLoading } = useMessages(params.room_id);
 
   const queryClient = useQueryClient();
@@ -51,7 +48,6 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
         );
       }
     };
-
     if (!loginUser) return;
     const listenerOptions: RealTimeListenerOptions = {
       channel: "talk" + params.room_id,
@@ -68,8 +64,7 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
       if (!channel) return;
       unsubscribeRealTimeListener(channel);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loginUser, params.room_id, queryClient]);
 
   return (
     <>
@@ -95,7 +90,7 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
               </span>
             </header>
             {members && !isMembersLoading && (
-              <Compass room_id={params.room_id} member={members[0]} />
+              <Compass loginUser={loginUser} room_id={params.room_id} member={members[0]} />
             )}
 
             <main className={styles.main}>
@@ -110,7 +105,7 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
                       sentUser={members.find((member) => member.id === message.sender_id)}
                     />
                   ))}
-                  <div className={styles.scroll_ref} ref={scrollBottomRef}></div>
+                  <div id="scrollTarget" className={styles.scroll_ref} ref={scrollBottomRef}></div>
                 </ul>
               </div>
             </main>

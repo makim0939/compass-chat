@@ -8,7 +8,7 @@ const useMessageScroll = ({
   messages: MessageData[] | undefined;
   ref: React.RefObject<HTMLDivElement>;
 }) => {
-  const [isInitial, setIsInitial] = useState<boolean>(false);
+  const [smooth, setSmooth] = useState<boolean>(false);
   const scrollBottom = useCallback(
     (smooth: boolean) => {
       if (!ref.current) return;
@@ -25,9 +25,9 @@ const useMessageScroll = ({
 
   useEffect(() => {
     if (!messages || messages.length === 0) return;
-    scrollBottom(isInitial);
-    setIsInitial(true);
-  }, [messages, isInitial, scrollBottom]);
+    scrollBottom(smooth);
+    setSmooth(true);
+  }, [messages, smooth, scrollBottom]);
   return;
 };
 

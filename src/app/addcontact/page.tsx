@@ -58,8 +58,7 @@ const AddContact = () => {
     return () => {
       watchInputs.unsubscribe();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [watch, setPlaceholder, resetField, setValue]);
 
   const checkIsAlreadyConnected = (foundUser: Profile) => {
     if (!contacts || contacts.length === 0) return false;

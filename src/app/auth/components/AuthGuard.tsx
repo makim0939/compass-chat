@@ -27,8 +27,7 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
     }
     if (!isUserLoading && !user) router.push("createprofile/");
     if (user) setLoginUser(user);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, session]);
+  }, [user, session, isSessionLoading, isUserLoading, setLoginUser, router]);
 
   return <>{loginUser && children}</>;
 };

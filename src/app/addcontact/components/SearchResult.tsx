@@ -29,6 +29,7 @@ const SearchResult = ({ loginUser, foundUser }: { loginUser: Profile; foundUser:
     const room = await insertTalkRoom({});
     console.log("create: room", room);
     setRoom(room);
+    return room;
   };
 
   const createRoomUser = async ({
@@ -48,23 +49,19 @@ const SearchResult = ({ loginUser, foundUser }: { loginUser: Profile; foundUser:
   const onClickUserItem = async (event: React.MouseEvent<HTMLButtonElement>) => {
     setDisabled(true);
     await createConnection({ user1_id: loginUser.id, user2_id: foundUser.id });
-    await createRoom();
-  };
-
-  useEffect(() => {
-    if (!room || !loginUser) return;
-    createRoomUser({
+    const room = await createRoom();
+    if (!room) throw new Error("no room created");
+    await createRoomUser({
       room_id: room.id,
       user_id: loginUser.id,
       talkroom_name: foundUser.nickname!,
     });
-    createRoomUser({
+    await createRoomUser({
       room_id: room.id,
       user_id: foundUser.id,
       talkroom_name: loginUser.nickname!,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [room]);
+  };
 
   return (
     <li>
