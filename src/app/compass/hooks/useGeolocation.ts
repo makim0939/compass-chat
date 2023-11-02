@@ -11,15 +11,19 @@ const useGeolocation = (isUseCompass: boolean) => {
       navigator.geolocation.clearWatch(id);
       setGeolocation(null);
     };
-
     console.log("geolocation start");
-    const id = navigator.geolocation.watchPosition((pos) => {
-      const crd = pos.coords;
-      setGeolocation({ lat: crd.latitude, lng: crd.longitude });
-    });
-    console.log(isUseCompass);
+    let id: number | null = null;
+    if (isUseCompass) {
+      const id = navigator.geolocation.watchPosition((pos) => {
+        const crd = pos.coords;
+        setGeolocation({ lat: crd.latitude, lng: crd.longitude });
+      });
+    }
+    if (!id) return;
     if (!isUseCompass) clearWatchLocation(id);
-    return () => clearWatchLocation(id);
+    return () => {
+      if (id) clearWatchLocation(id);
+    };
   }, [isUseCompass]);
   return geolocation;
 };
