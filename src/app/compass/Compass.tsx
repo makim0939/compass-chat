@@ -20,6 +20,8 @@ import {
   selectGeolocationByUserId,
   upsertGeolocation,
 } from "../utils/supabaseFunctions";
+import { get } from "http";
+import useDeviceType from "./hooks/useDevicetype";
 
 const COMPASS_IMG = "/assets/compass.png";
 const COMPASS_BUTTON_IMG = "../../assets/compass_button.svg";
@@ -41,23 +43,33 @@ const Compass = ({
   const [isUseCompass, setIsUseCompass] = useState(false);
   const [memberLocation, setMemberLocation] = useState<LocationData | null>(null);
   const [prevMyLocation, setPrevMyLocation] = useState<LocationData | null>(null);
+  const deviceType = useDeviceType();
   const myLocation = useGeolocation(isUseCompass);
-  const direction = useCompass({ myLocation, memberLocation }, isUseCompass);
+  const direction = useCompass({ myLocation, memberLocation }, isUseCompass, deviceType);
   //ユーザ、部屋情報の取得
   if (!loginUser) throw new Error("loginUser is null");
   const handleClick = async () => {
-    //Android
-    //iOS
-    const DOE = DeviceOrientationEvent as any;
-    await DOE.requestPermission().then((val: string) => {
-      console.log(val);
-      if (val !== "denied") {
-        setIsUseCompass(true);
-        getMemberLocation();
-      } else {
-        //センサの使用が拒否
-      }
-    });
+    //Android or iosUnder13
+    if (deviceType === "android" || deviceType === "iosUnder13") {
+      setIsUseCompass(true);
+      getMemberLocation();
+      return;
+    }
+    //iosOver13
+    if (deviceType === "iosOver13") {
+      const DOE = DeviceOrientationEvent as any;
+      await DOE.requestPermission().then((val: string) => {
+        console.log(val);
+        if (val !== "denied") {
+          setIsUseCompass(true);
+          getMemberLocation();
+        } else {
+          //センサの使用が拒否
+          alert("コンパスを使用するにはブラウザアプリを開き直してください");
+        }
+      });
+      return;
+    }
   };
 
   const onClickCompass = () => {
