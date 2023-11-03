@@ -30,6 +30,7 @@ export type LocationData = {
   lat: number;
   lng: number;
 };
+export type DeviceType = "android" | "iosUnder13" | "iosOver13" | "other";
 
 const Compass = ({
   loginUser,

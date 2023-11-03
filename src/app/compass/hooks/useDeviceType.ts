@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { DeviceType } from "../Compass";
 
-export type DeviceType = "android" | "iosUnder13" | "iosOver13" | "other";
 const useDeviceType = () => {
   const [deviceType, setDeviceType] = useState<DeviceType>("other");
   useEffect(() => {

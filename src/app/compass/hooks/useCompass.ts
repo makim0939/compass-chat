@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect, useEffect } from "react";
 import { LocationData } from "../Compass";
-import { DeviceType } from "./useDevicetype";
+import { DeviceType } from "../Compass";
 
 const useCompass = (
   {
