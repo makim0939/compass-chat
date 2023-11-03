@@ -21,7 +21,7 @@ import {
   upsertGeolocation,
 } from "../utils/supabaseFunctions";
 import { get } from "http";
-import useDeviceType from "./hooks/useDevicetype";
+import useDeviceType from "./hooks/useDeviceType";
 
 const COMPASS_IMG = "/assets/compass.png";
 const COMPASS_BUTTON_IMG = "../../assets/compass_button.svg";
