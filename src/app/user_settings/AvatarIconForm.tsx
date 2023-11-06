@@ -5,11 +5,17 @@ import { updateProfile } from "@/app/utils/supabaseFunctions";
 import { useAtom } from "jotai";
 import React from "react";
 import styles from "./userSettings.module.scss";
+import useProfileMutation from "./hooks/useProfileMutation";
+import { useRouter } from "next/navigation";
 
-const AvatarIconForm = () => {
+const AvatarIconForm = ({ setShow }: { setShow: Function }) => {
   const [loginUser] = useAtom(loginUserAtom);
   const [file, setFile] = React.useState<File | null>(null);
   const [pathname, setPathname] = React.useState("");
+  if (!loginUser) throw new Error("loginUser is undefined");
+  const profileMutation = useProfileMutation(loginUser.id);
+  const router = useRouter();
+
   const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.currentTarget.files;
     if (!loginUser || !f || f.length === 0) return;
@@ -31,7 +37,9 @@ const AvatarIconForm = () => {
     if (error) throw new Error(error.message);
     console.log(data.path);
     const profileData = { avatar_url: data.path };
-    updateProfile({ id: loginUser.id, updateData: profileData });
+    profileMutation.mutate(profileData);
+    window.alert("プロフィール画像を設定しました");
+    setShow("none");
   };
 
   return (

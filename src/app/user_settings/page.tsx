@@ -72,7 +72,7 @@ const UserSettings = () => {
         {show === "avatar_icon" && (
           <div className={styles.form_wrapper}>
             <div onClick={onClickCloseForm}>閉じる</div>
-            <AvatarIconForm />
+            <AvatarIconForm setShow={setShow} />
           </div>
         )}
       </div>
