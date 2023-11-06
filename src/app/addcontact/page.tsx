@@ -34,23 +34,21 @@ const AddContact = () => {
   useEffect(() => {
     const watchInputs = watch(
       (data, { name, type }) => {
-        console.log("watchInputs");
-        if (name === "mode") {
-          if (data.mode === "unique_name") {
-            setPlaceholder("ユーザID");
-            resetField("searchInput", { defaultValue: "@" });
-            return;
-          }
-          if (data.mode === "nickname") setPlaceholder("ニックネーム");
-          if (data.mode === "email") setPlaceholder("example@email.com");
-          resetField("searchInput");
-          return;
-        } else {
-          if (data.mode !== "unique_name" || !data.searchInput) return;
-          if (data.searchInput[0] !== "@") {
-            setValue("searchInput", "@" + data.searchInput);
-            return;
-          }
+        switch (name) {
+          case "mode":
+            if (data.mode === "unique_name") {
+              setPlaceholder("ユーザID");
+              resetField("searchInput", { defaultValue: "@" });
+              break;
+            }
+            if (data.mode === "nickname") setPlaceholder("ニックネーム");
+            if (data.mode === "email") setPlaceholder("example@email.com");
+            resetField("searchInput", { defaultValue: "" });
+            break;
+          case "searchInput":
+            if (data.mode !== "unique_name" || !data.searchInput) break;
+            if (data.searchInput[0] !== "@") setValue("searchInput", "@" + data.searchInput);
+            break;
         }
       },
       { mode: "nickname", searchInput: "" },
@@ -93,43 +91,37 @@ const AddContact = () => {
           <div className={styles.index}>
             <h3 className={styles.title}>連絡先を追加</h3>
           </div>
-          <div className={styles.input_wrapper}>
-            <div className={styles.input_row}>
-              <span>
-                <label htmlFor="">ユーザを検索</label>
-                <select {...register("mode")} name="mode" className={styles.input_select}>
-                  <option value="nickname">ニックネーム</option>
-                  <option value="email">メールアドレス</option>
-                  <option value="unique_name">ユーザID</option>
-                </select>
-              </span>
-              <input
-                {...register("searchInput", { required: true })}
-                type="text"
-                name="searchInput"
-                placeholder={placeholder}
-                className={styles.input_text}
-              />
+          <div className={styles.input_row}>
+            <div>
+              <label htmlFor="">ユーザを検索</label>
+              <select {...register("mode")} name="mode" className={styles.input_select}>
+                <option value="nickname">ニックネーム</option>
+                <option value="email">メールアドレス</option>
+                <option value="unique_name">ユーザID</option>
+              </select>
             </div>
+            <input
+              {...register("searchInput", { required: true })}
+              type="text"
+              name="searchInput"
+              placeholder={placeholder}
+              className={styles.input_text}
+            />
           </div>
           <div className={styles.form_buttons}>
-            <span></span>
-            <span>
-              <button className={styles.button} disabled={isContactsLoading}>
-                検索
-              </button>
-            </span>
+            <button className={styles.button} disabled={isContactsLoading}>
+              検索
+            </button>
           </div>
         </form>
+
         {loginUser && searchResults && (
           <div className={styles.search_result_container}>
             {searchResults!.length !== 0 ? (
               <ul>
-                <>
-                  {searchResults.map((user) => (
-                    <SearchResult key={user.id} loginUser={loginUser} foundUser={user} />
-                  ))}
-                </>
+                {searchResults.map((user) => (
+                  <SearchResult key={user.id} loginUser={loginUser} foundUser={user} />
+                ))}
               </ul>
             ) : (
               <p>ユーザが見つかりませんでした。</p>

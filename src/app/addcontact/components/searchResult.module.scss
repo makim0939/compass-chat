@@ -1,0 +1,35 @@
+$theme: rgb(42, 105, 210);
+$theme_dark: adjust-color($theme, $lightness: -5%);
+$theme_light: adjust-color($theme, $lightness: +5%);
+$theme_pale: adjust-color($theme, $lightness: +25%);
+$radius: 2px;
+$link: #2060f0;
+
+.profile_list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  list-style-type: none;
+  .profile {
+    display: flex;
+    align-items: center;
+    .avatar_icon {
+      margin: 0 4px;
+    }
+    p {
+      margin: 0 8px;
+    }
+  }
+  .request_button {
+    border: none;
+    height: 32px;
+    border-radius: $radius;
+    background-color: transparent;
+    color: $link;
+    font-size: 14px;
+    &:disabled {
+      color: #d0d0d5;
+    }
+  }
+}

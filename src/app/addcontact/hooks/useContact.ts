@@ -1,6 +1,4 @@
-import React from "react";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { fetchData } from "@/app/utils/clientFunctions";
 import { Connection } from "@/app/types/types";
 import { selectConnectionsByUserId } from "@/app/utils/supabaseFunctions";
 

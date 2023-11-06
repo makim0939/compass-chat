@@ -109,16 +109,16 @@ export interface Database {
         Row: {
           created_at: string;
           id: string;
-          nickname: string | null;
-          unique_name: string | null;
+          nickname: string;
+          unique_name: string;
           avatar_url: string;
         };
         Insert: {
           created_at?: string;
           id: string;
-          nickname?: string | null;
-          unique_name?: string | null;
-          avatar_url: string;
+          nickname: string;
+          unique_name: string;
+          avatar_url?: string | null;
         };
         Update: {
           created_at?: string;
