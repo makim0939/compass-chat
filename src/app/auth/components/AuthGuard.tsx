@@ -15,14 +15,15 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const isExistProfile = async () => {
-      const profile = await selectProfileById(session!.user.id);
-      if (!profile) return false;
-      return true;
-    };
     if (isSessionLoading) return;
-    if (!session) router.push("/auth");
-    if (!isUserLoading && !user) router.push("createprofile/");
+    if (!session) {
+      router.replace("/auth");
+      return;
+    }
+    if (!isUserLoading && !user) {
+      router.push("createprofile/");
+      return;
+    }
     if (user) setLoginUser(user);
   }, [user, session, isSessionLoading, isUserLoading, setLoginUser, router]);
 
