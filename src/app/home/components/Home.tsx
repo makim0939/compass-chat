@@ -7,9 +7,12 @@ import styles from "../home.module.scss";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import AvatarIcon from "@/app/components/AvatarIcon";
+
 const ADD_BUTTON = "../assets/add_button.svg";
 const SETTINGS_BUTTON = "../assets/settings_button.svg";
+const ICON_SIZE = 36;
 export const HOME_AVATAR_SIZE = 45;
+
 const Home = () => {
   const [loginUser] = useAtom(loginUserAtom);
   if (!loginUser) throw new Error("loginUser is undefined");
@@ -29,19 +32,19 @@ const Home = () => {
           <button className={styles.add_connection_button} onClick={onClickAddConnection}>
             <Image
               src={ADD_BUTTON}
-              alt=""
+              alt="add_connection"
               className={styles.add_connection_button_img}
-              width={36}
-              height={36}
+              width={ICON_SIZE}
+              height={ICON_SIZE}
             />
           </button>
           <button onClick={onClickUserSettings} className={styles.settings_button}>
             <Image
               src={SETTINGS_BUTTON}
-              alt=""
+              alt="user_settings"
               className={styles.settings_button_img}
-              width={36}
-              height={36}
+              width={ICON_SIZE}
+              height={ICON_SIZE}
             />
           </button>
         </div>
