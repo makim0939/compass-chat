@@ -1,22 +1,45 @@
-import React from "react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { LocationData } from "../Compass";
+import { upsertGeolocation } from "@/app/utils/supabaseFunctions";
 
-const useGeolocation = (isUseCompass: boolean) => {
-  const [geolocation, setGeolocation] = useState<LocationData | null>(null);
+const useGeolocation = ({ userId, isUseCompass }: { userId: string; isUseCompass: boolean }) => {
+  const [prevGeolocation, setPrevGeolocation] = useState<LocationData | null>(null);
+  const geolocation = useRef<LocationData | null>(null);
 
   useEffect(() => {
     const clearWatchLocation = (id: number) => {
-      console.log("geolocation end");
       navigator.geolocation.clearWatch(id);
-      setGeolocation(null);
+      setPrevGeolocation(null);
+      geolocation.current = null;
     };
-    console.log("geolocation start");
+
+    const sendLocationData = async ({
+      current,
+      prev,
+    }: {
+      current: LocationData;
+      prev: LocationData | null;
+    }) => {
+      const data = {
+        user_id: userId,
+        lat: current.lat,
+        lng: current.lng,
+      };
+      if (prev && prev.lat === current.lat && prev.lng === current.lng) return;
+      const res = await upsertGeolocation(data);
+      return;
+    };
+
     let id: number | null = null;
     if (isUseCompass) {
       id = navigator.geolocation.watchPosition((pos) => {
         const crd = pos.coords;
-        setGeolocation({ lat: crd.latitude, lng: crd.longitude });
+        sendLocationData({
+          current: { lat: crd.latitude, lng: crd.longitude },
+          prev: geolocation.current,
+        });
+        geolocation.current = { lat: crd.latitude, lng: crd.longitude };
+        setPrevGeolocation(geolocation.current);
       });
     }
     if (!id) return;
@@ -24,8 +47,8 @@ const useGeolocation = (isUseCompass: boolean) => {
     return () => {
       if (id) clearWatchLocation(id);
     };
-  }, [isUseCompass]);
-  return geolocation;
+  }, [userId, isUseCompass]);
+  return { geolocation: geolocation.current, prevGeolocation };
 };
 
 export default useGeolocation;
