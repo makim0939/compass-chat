@@ -13,24 +13,23 @@ const AvatarIcon = ({ size, user }: { size: number; user: Profile }) => {
         data: { publicUrl },
       } = supabase.storage.from("avatar_image").getPublicUrl(user.avatar_url);
       setAvatarUrl(publicUrl);
-      console.log(publicUrl);
     };
     getAvatarUrl();
   }, [user]);
 
+  if (avatarUrl === "") return;
   return (
-    <>
-      {avatarUrl !== "" && (
-        <div className={styles.container} style={{ width: size, height: size }}>
-          <img
-            alt=""
-            src={avatarUrl}
-            className={styles.image}
-            style={{ width: size, height: size }}
-          ></img>
-        </div>
-      )}
-    </>
+    <div className={styles.container} style={{ width: size, height: size }}>
+      <Image
+        alt=""
+        src={avatarUrl}
+        className={styles.image}
+        style={{ width: size, height: size }}
+        contentEditable
+        width={size}
+        height={size}
+      ></Image>
+    </div>
   );
 };
 
