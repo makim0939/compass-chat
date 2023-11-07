@@ -32,7 +32,8 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
 
   const queryClient = useQueryClient();
   const scrollBottomRef = useRef<HTMLDivElement>(null);
-  useMessageScroll({ messages, ref: scrollBottomRef });
+  const scrollEnabled = !!talkRoom && !!members && !!messages;
+  useMessageScroll({ ref: scrollBottomRef, messages, scrollEnabled });
 
   useEffect(() => {
     const onFetchMessageCallback = (
@@ -66,54 +67,41 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
     };
   }, [loginUser, params.room_id, queryClient]);
 
+  if (!talkRoom || !messages || !members)
+    return <div id="scrollTarget" className={styles.scroll_ref} ref={scrollBottomRef}></div>;
   return (
-    <>
-      {talkRoom && messages && members && (
-        <>
-          <div className={styles.wrapper}>
-            <header className={styles.header}>
-              <span className={styles.header_contents}>
-                <Link href={"/"} className={styles.link}>
-                  <h3 className={styles.back_ward_button}>&lt;</h3>
-                </Link>
-                {members && !isMembersLoading && (
-                  <>
-                    {members.map((member) => (
-                      <div key={member.id}>
-                        {member.id !== loginUser.id && (
-                          <h3 className={styles.index}>{member.nickname}</h3>
-                        )}
-                      </div>
-                    ))}
-                  </>
-                )}
-              </span>
-            </header>
-            {members && !isMembersLoading && (
-              <Compass loginUser={loginUser} room_id={params.room_id} member={members[0]} />
-            )}
+    <div className={styles.wrapper}>
+      <header className={styles.header}>
+        <span className={styles.header_contents}>
+          <Link href={"/"} className={styles.link}>
+            <h3 className={styles.back_ward_button}>&lt;</h3>
+          </Link>
+          {members.map((member) => (
+            <div key={member.id}>
+              {member.id !== loginUser.id && <h3 className={styles.index}>{member.nickname}</h3>}
+            </div>
+          ))}
+        </span>
+      </header>
+      <Compass loginUser={loginUser} room_id={params.room_id} member={members[0]} />
 
-            <main className={styles.main}>
-              <div className={styles.talk_container}>
-                <ul>
-                  {messages.map((message) => (
-                    <Message
-                      key={message.id}
-                      message={message}
-                      talkRoom={talkRoom}
-                      loginUser={loginUser}
-                      sentUser={members.find((member) => member.id === message.sender_id)}
-                    />
-                  ))}
-                  <div id="scrollTarget" className={styles.scroll_ref} ref={scrollBottomRef}></div>
-                </ul>
-              </div>
-            </main>
-            <MessageForm talkRoom={talkRoom} loginUser={loginUser} />
-          </div>
-        </>
-      )}
-    </>
+      <main className={styles.main}>
+        <div className={styles.talk_container}>
+          <ul>
+            {messages.map((message) => (
+              <Message
+                key={message.id}
+                message={message}
+                loginUser={loginUser}
+                sentUser={members.find((member) => member.id === message.sender_id)}
+              />
+            ))}
+            <div id="scrollTarget" className={styles.scroll_ref} ref={scrollBottomRef}></div>
+          </ul>
+        </div>
+      </main>
+      <MessageForm talkRoom={talkRoom} loginUser={loginUser} />
+    </div>
   );
 };
 

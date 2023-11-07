@@ -5,7 +5,7 @@ import { UseQueryResult, useQuery } from "@tanstack/react-query";
 const useTalkRoom = (roomId: number): UseQueryResult<Room> =>
   useQuery({
     queryKey: ["talkroom", roomId],
-    queryFn: async () => selectTalkRoomById(roomId),
+    queryFn: async () => await selectTalkRoomById(roomId),
     staleTime: Infinity,
   });
 
