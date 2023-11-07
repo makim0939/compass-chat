@@ -1,6 +1,8 @@
 import React from "react";
 import { Profile } from "@/app/types/database.types";
 import styles from "../userSettings.module.scss";
+import useProfileMutation from "../hooks/useProfileMutation";
+import { updateProfile } from "@/app/utils/supabaseFunctions";
 
 const UniqueNameForm = ({
   loginUser,
@@ -9,7 +11,27 @@ const UniqueNameForm = ({
   loginUser: Profile;
   setDisplay: Function;
 }) => {
-  const handleSubmit = () => {};
+  const profileMutation = useProfileMutation(loginUser.id);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    if (value === "") return;
+    if (value[0] === "@") return;
+    e.target.value = `@${value}`;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const value = e.currentTarget.uniqueName.value;
+    if (value === "") return;
+    const result = await updateProfile({
+      id: loginUser.id,
+      updateData: { unique_name: value },
+    });
+    profileMutation.mutate({ unique_name: value });
+    window.alert("ユーザIDを設定しました");
+    setDisplay("none");
+  };
   return (
     <div className={styles.form_wrapper}>
       <p className={styles.close_button} onClick={() => setDisplay("none")}>
@@ -17,7 +39,13 @@ const UniqueNameForm = ({
       </p>
       <form onSubmit={handleSubmit} className={styles.form}>
         <h3>ユーザIDを設定</h3>
-        <input type="text" className={styles.text_input} placeholder="@user_id" />
+        <input
+          type="text"
+          name="uniqueName"
+          className={styles.text_input}
+          placeholder="@user_id"
+          onChange={handleChange}
+        />
         <div className={styles.button_container}>
           <button type="submit" className={styles.submit_button}>
             設定
