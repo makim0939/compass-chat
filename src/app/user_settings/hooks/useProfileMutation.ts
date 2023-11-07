@@ -1,5 +1,5 @@
 import { Profile, ProfileUpdateProps } from "@/app/types/types";
-import { insertMessage, updateProfile } from "@/app/utils/supabaseFunctions";
+import { updateProfile } from "@/app/utils/supabaseFunctions";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const useProfileMutation = (loginUserId: string) => {
