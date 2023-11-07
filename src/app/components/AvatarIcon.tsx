@@ -25,7 +25,6 @@ const AvatarIcon = ({ size, user }: { size: number; user: Profile }) => {
         src={avatarUrl}
         className={styles.image}
         style={{ width: size, height: size }}
-        contentEditable
         width={size}
         height={size}
       ></Image>
