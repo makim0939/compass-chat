@@ -1,4 +1,4 @@
-import { Profile, RoomUserRelation } from "@/app/types/types";
+import { Profile } from "@/app/types/types";
 import { selectProfileById, selectRoomUserRelationsByRoomId } from "@/app/utils/supabaseFunctions";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
