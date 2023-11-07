@@ -12,10 +12,7 @@ const useMembers = ({
   useQuery({
     queryKey: ["members", room_id],
     queryFn: async () => {
-      //ルームidからメンバーを取得
-      //→ルーム→ルームユーザー[]→プロフィール[]
       const roomUserRelations = await selectRoomUserRelationsByRoomId(room_id);
-
       if (!roomUserRelations) return [];
       const roomMemberRelations = roomUserRelations.filter(
         (roomUserRelation) => roomUserRelation.user_id !== loginUserId,
