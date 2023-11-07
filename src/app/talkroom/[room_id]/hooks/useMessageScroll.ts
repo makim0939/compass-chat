@@ -1,5 +1,5 @@
 import { MessageData } from "@/app/types/database.types";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 const useMessageScroll = ({
   ref,

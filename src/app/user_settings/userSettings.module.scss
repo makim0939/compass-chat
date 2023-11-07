@@ -1,3 +1,8 @@
+$theme: rgb(42, 105, 210);
+$theme_dark: adjust-color($theme, $lightness: -5%);
+$theme_pale: adjust-color($theme, $lightness: +25%);
+$radius: 2px;
+
 .wrapper {
   width: 100%;
 }
@@ -75,13 +80,56 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     background-color: #fff;
   }
-}
+  h3 {
+    margin: 32px 0 8px 0;
+  }
+  input {
+    margin: 16px 0 8px 0;
+  }
 
-.file_input {
-  button {
+  input[type="text"] {
+    width: 98%;
+    height: 28px;
+    background-color: #e5e5e7;
     border: none;
+    border-radius: $radius;
+    font-size: 90%;
+    font-weight: bold;
+    color: #252528;
+    &:focus {
+      outline: $theme_pale 1px solid;
+    }
+  }
+  input[type="file"] {
+    width: 100%;
+    display: flex;
+    font-size: 14px;
+    &::-webkit-file-upload-button {
+      border: none;
+      background-color: transparent;
+      color: $theme;
+      border-radius: $radius;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  }
+  .button_container {
+    width: 100%;
+    margin: 8px 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .submit_button {
+    height: 32px;
+    border: none;
+    border-radius: $radius;
+    background-color: $theme;
+    color: white;
+    font-size: 16px;
+    font-weight: normal;
   }
 }
