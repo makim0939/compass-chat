@@ -122,6 +122,20 @@ $radius: 2px;
       font-size: 14px;
     }
   }
+  .crop_preview {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 16px 0 0 0;
+  }
+  .cropper {
+    width: 90%;
+    aspect-ratio: 1;
+    max-width: 240px;
+    max-height: 240px;
+    margin: 16px 0;
+  }
   .button_container {
     width: 100%;
     margin: 8px 0;
