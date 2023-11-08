@@ -20,6 +20,7 @@
     "jotai-tanstack-query": "^0.7.2",
     "next": "13.5.4",
     "react": "^18",
+    "react-cropper": "^2.3.3",
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
     "sass": "^1.68.0"
