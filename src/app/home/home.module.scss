@@ -39,22 +39,6 @@ $icon_size: 3.8em;
       border: none;
       cursor: pointer;
     }
-
-    .settings_button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 3.2em;
-      height: 3.2em;
-      margin: 0;
-      padding: 0;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      .logout_button_img {
-        width: 3.2em;
-      }
-    }
   }
 }
 .talkroom_list {

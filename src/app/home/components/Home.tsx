@@ -7,6 +7,8 @@ import styles from "../home.module.scss";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import AvatarIcon from "@/app/components/AvatarIcon";
+import SettingsIcon from "@/app/components/icon/SettingsIcon";
+import AddIcon from "@/app/components/icon/AddIcon";
 
 const ADD_BUTTON = "../assets/add_button.svg";
 const SETTINGS_BUTTON = "../assets/settings_button.svg";
@@ -29,24 +31,8 @@ const Home = () => {
     <>
       <header className={styles.header}>
         <div className={styles.header_buttons}>
-          <button className={styles.add_connection_button} onClick={onClickAddConnection}>
-            <Image
-              src={ADD_BUTTON}
-              alt="add_connection"
-              className={styles.add_connection_button_img}
-              width={ICON_SIZE}
-              height={ICON_SIZE}
-            />
-          </button>
-          <button onClick={onClickUserSettings} className={styles.settings_button}>
-            <Image
-              src={SETTINGS_BUTTON}
-              alt="user_settings"
-              className={styles.settings_button_img}
-              width={ICON_SIZE}
-              height={ICON_SIZE}
-            />
-          </button>
+          <AddIcon size={ICON_SIZE} />
+          <SettingsIcon size={ICON_SIZE} />
         </div>
         <div className={styles.my_profile}>
           <div className={styles.icon}>
