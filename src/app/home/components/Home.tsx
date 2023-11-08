@@ -11,7 +11,7 @@ import AvatarIcon from "@/app/components/AvatarIcon";
 const ADD_BUTTON = "../assets/add_button.svg";
 const SETTINGS_BUTTON = "../assets/settings_button.svg";
 const ICON_SIZE = 36;
-export const HOME_AVATAR_SIZE = 47;
+export const HOME_AVATAR_SIZE = 50;
 
 const Home = () => {
   const [loginUser] = useAtom(loginUserAtom);

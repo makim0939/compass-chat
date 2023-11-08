@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import AvatarIconForm from "./components/AvatarIconForm";
 import NickNameForm from "./components/NickNameForm";
 import UniqueNameForm from "./components/UniqueNameForm";
+const AVATAR_ICON_SIZE = 60;
 
 const UserSettings = () => {
   const [loginUser] = useAtom(loginUserAtom);
@@ -49,8 +50,11 @@ const UserSettings = () => {
         </p>
         <ul className={styles.settings_list}>
           <li className={styles.settings_head}>
-            <button style={{ width: 47, height: 47 }} onClick={() => setDisplay("avatar_icon")}>
-              <AvatarIcon size={47} user={loginUser} />
+            <button
+              style={{ width: AVATAR_ICON_SIZE, height: AVATAR_ICON_SIZE }}
+              onClick={() => setDisplay("avatar_icon")}
+            >
+              <AvatarIcon size={AVATAR_ICON_SIZE} user={loginUser} />
             </button>
           </li>
           <li className={styles.settings_item}>
