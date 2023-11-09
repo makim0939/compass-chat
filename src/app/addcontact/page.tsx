@@ -9,7 +9,7 @@ import styles from "./addcontact.module.scss";
 import useContact from "./hooks/useContact";
 import SearchResult from "./components/SearchResult";
 import { selectProfilesByNickname } from "../utils/supabaseFunctions";
-import BackwardIcon from "../components/icon/BackwardIcon";
+import BackwardIcon from "../components/ui/icon/BackwardIcon";
 import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
 
 type SearchUserFormInputs = {

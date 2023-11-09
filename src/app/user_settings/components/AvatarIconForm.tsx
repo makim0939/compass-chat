@@ -6,9 +6,9 @@ import useProfileMutation from "../hooks/useProfileMutation";
 import { Profile } from "../../types/types";
 import styles from "../userSettings.module.scss";
 import "cropperjs/dist/cropper.css";
-import CloseIcon from "@/app/components/icon/CloseIcon";
+import CloseIcon from "@/app/components/ui/icon/CloseIcon";
 import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
-import BackwardIcon from "@/app/components/icon/BackwardIcon";
+import BackwardIcon from "@/app/components/ui/icon/BackwardIcon";
 
 const AvatarIconForm = ({
   loginUser,

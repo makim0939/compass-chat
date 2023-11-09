@@ -4,7 +4,7 @@ import styles from "../userSettings.module.scss";
 import useProfileMutation from "../hooks/useProfileMutation";
 import { updateProfile } from "@/app/utils/supabaseFunctions";
 import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
-import BackwardIcon from "@/app/components/icon/BackwardIcon";
+import BackwardIcon from "@/app/components/ui/icon/BackwardIcon";
 
 const UniqueNameForm = ({
   loginUser,
