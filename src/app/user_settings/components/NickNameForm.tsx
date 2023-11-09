@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../userSettings.module.scss";
 import { Profile } from "@/app/types/database.types";
 import { updateProfile } from "@/app/utils/supabaseFunctions";
 import useProfileMutation from "../hooks/useProfileMutation";
+import BackwardIcon from "@/app/components/icon/BackwardIcon";
+import { ICON_COLOR, ICON_SIZE } from "../page";
 
 const NickNameForm = ({ loginUser, setDisplay }: { loginUser: Profile; setDisplay: Function }) => {
   const profileMutation = useProfileMutation(loginUser.id);
@@ -19,18 +21,29 @@ const NickNameForm = ({ loginUser, setDisplay }: { loginUser: Profile; setDispla
     window.alert("ニックネームを設定しました");
     setDisplay("none");
   };
+  useEffect(() => {
+    document.getElementById("input")!.focus();
+  }, []);
   return (
     <div className={styles.form_wrapper}>
-      <p className={styles.close_button} onClick={() => setDisplay("none")}>
-        閉じる
-      </p>
+      <div className={styles.header}>
+        <BackwardIcon
+          size={ICON_SIZE}
+          fill={ICON_COLOR}
+          margin="0 8px 0 0"
+          onClick={() => setDisplay("none")}
+        />
+        <h3>ニックネーム</h3>
+        <div style={{ width: ICON_SIZE, margin: "0 8px" }}></div>
+      </div>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <h3>ニックネームを設定</h3>
         <input
           name="nickname"
           type="text"
           className={styles.text_input}
+          id="input"
           placeholder="ニックネーム"
+          defaultValue={loginUser.nickname}
         />
         <div className={styles.button_container}>
           <button type="submit" className={styles.submit_button}>

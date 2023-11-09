@@ -7,8 +7,9 @@ import { Profile } from "../../types/types";
 import styles from "../userSettings.module.scss";
 import "cropperjs/dist/cropper.css";
 import CloseIcon from "@/app/components/icon/CloseIcon";
-import { CLOSE_ICON_SIZE } from "../page";
-import { CLOSE_ICON_COLOR } from "../page";
+import { ICON_SIZE } from "../page";
+import { ICON_COLOR } from "../page";
+import BackwardIcon from "@/app/components/icon/BackwardIcon";
 
 const AvatarIconForm = ({
   loginUser,
@@ -60,15 +61,17 @@ const AvatarIconForm = ({
 
   return (
     <div className={styles.form_wrapper}>
-      <div className={styles.close_icon_container}>
-        <CloseIcon
-          size={CLOSE_ICON_SIZE}
-          fill={CLOSE_ICON_COLOR}
+      <div className={styles.header}>
+        <BackwardIcon
+          size={ICON_SIZE}
+          fill={ICON_COLOR}
+          margin="0 8px 0 0"
           onClick={() => setDisplay("none")}
         />
+        <h3>プロフィール画像</h3>
+        <div style={{ width: ICON_SIZE, margin: "0 8px" }}></div>
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <h3>プロフィール画像を設定</h3>
         <input
           type="file"
           accept="image/png, image/jpeg"

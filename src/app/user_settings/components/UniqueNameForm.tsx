@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Profile } from "@/app/types/database.types";
 import styles from "../userSettings.module.scss";
 import useProfileMutation from "../hooks/useProfileMutation";
@@ -32,6 +32,9 @@ const UniqueNameForm = ({
     window.alert("ユーザIDを設定しました");
     setDisplay("none");
   };
+  useEffect(() => {
+    document.getElementById("input")!.focus();
+  }, []);
   return (
     <div className={styles.form_wrapper}>
       <p className={styles.close_button} onClick={() => setDisplay("none")}>
@@ -43,7 +46,9 @@ const UniqueNameForm = ({
           type="text"
           name="uniqueName"
           className={styles.text_input}
+          id="input"
           placeholder="@user_id"
+          defaultValue={loginUser.unique_name}
           onChange={handleChange}
         />
         <div className={styles.button_container}>

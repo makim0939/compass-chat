@@ -1,14 +1,16 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
 import { loginUserAtom } from "../atoms";
 import { Profile } from "../types/database.types";
 import styles from "./addcontact.module.scss";
 import useContact from "./hooks/useContact";
 import SearchResult from "./components/SearchResult";
 import { selectProfilesByNickname } from "../utils/supabaseFunctions";
+import BackwardIcon from "../components/icon/BackwardIcon";
+import { ICON_COLOR, ICON_SIZE } from "../user_settings/page";
 
 type SearchUserFormInputs = {
   searchInput: string;
@@ -21,7 +23,7 @@ const AddContact = () => {
   if (!loginUser) throw new Error("loginUser is undefined");
   const [searchResults, setSearchResults] = useState<Profile[] | null>(null);
   const [placeholder, setPlaceholder] = useState<string>("ニックネーム");
-
+  const router = useRouter();
   const {
     register,
     resetField,
@@ -84,13 +86,17 @@ const AddContact = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <Link href={"/"} className={styles.link}>
-          <p className={styles.back_ward_button}>ホームに戻る</p>
-        </Link>
+        <div className={styles.header}>
+          <BackwardIcon
+            size={ICON_SIZE}
+            fill={ICON_COLOR}
+            margin="0 16px 0 0"
+            onClick={() => router.push("/")}
+          />
+          <h3>連絡先を追加</h3>
+          <div style={{ width: ICON_SIZE, margin: "0 8px" }}></div>
+        </div>
         <form onSubmit={handleSubmit(isValid)} className={styles.search_form}>
-          <div className={styles.index}>
-            <h3 className={styles.title}>連絡先を追加</h3>
-          </div>
           <div className={styles.input_row}>
             <div>
               <label htmlFor="">ユーザを検索</label>

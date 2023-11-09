@@ -2,6 +2,7 @@
 import { loginUserAtom } from "@/app/atoms";
 import { useAtom } from "jotai";
 import React, { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import useTalkRoom from "./hooks/useTalkRoom";
 import useMembers from "./hooks/useMembers";
@@ -14,11 +15,12 @@ import {
 import { RealtimePostgresChangesPayload } from "@supabase/supabase-js";
 import { MessageData } from "@/app/types/database.types";
 import styles from "./talkroom.module.scss";
-import Link from "next/link";
 import Message from "./components/Message";
 import useMessageScroll from "./hooks/useMessageScroll";
 import MessageForm from "./components/MessageForm";
 import Compass from "@/app/compass/Compass";
+import BackwardIcon from "@/app/components/icon/BackwardIcon";
+import { ICON_COLOR, ICON_SIZE } from "@/app/user_settings/page";
 
 const TalkRoom = ({ params }: { params: { room_id: number } }) => {
   const [loginUser] = useAtom(loginUserAtom);
@@ -30,6 +32,7 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
   });
   const { data: messages, isLoading: isMessagesLoading } = useMessages(params.room_id);
 
+  const router = useRouter();
   const queryClient = useQueryClient();
   const scrollBottomRef = useRef<HTMLDivElement>(null);
   const scrollEnabled = !!talkRoom && !!members && !!messages;
@@ -73,9 +76,13 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
     <div className={styles.wrapper}>
       <header className={styles.header}>
         <span className={styles.header_contents}>
-          <Link href={"/"} className={styles.link}>
-            <h3 className={styles.back_ward_button}>&lt;</h3>
-          </Link>
+          <BackwardIcon
+            size={ICON_SIZE}
+            fill={ICON_COLOR}
+            margin="0 8px 0 0"
+            onClick={() => router.push("/")}
+          />
+
           {members.map((member) => (
             <div key={member.id}>
               {member.id !== loginUser.id && <h3 className={styles.index}>{member.nickname}</h3>}
