@@ -3,6 +3,8 @@ import { Profile } from "@/app/types/database.types";
 import styles from "../userSettings.module.scss";
 import useProfileMutation from "../hooks/useProfileMutation";
 import { updateProfile } from "@/app/utils/supabaseFunctions";
+import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
+import BackwardIcon from "@/app/components/icon/BackwardIcon";
 
 const UniqueNameForm = ({
   loginUser,
@@ -37,11 +39,17 @@ const UniqueNameForm = ({
   }, []);
   return (
     <div className={styles.form_wrapper}>
-      <p className={styles.close_button} onClick={() => setDisplay("none")}>
-        閉じる
-      </p>
+      <div className={styles.header}>
+        <BackwardIcon
+          size={ICON_SIZE_SMALL}
+          fill={ICON_COLOR_DARK}
+          margin="0 8px 0 0"
+          onClick={() => setDisplay("none")}
+        />
+        <h3>ユーザID</h3>
+        <div style={{ width: ICON_SIZE_SMALL, margin: "0 8px" }}></div>
+      </div>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <h3>ユーザIDを設定</h3>
         <input
           type="text"
           name="uniqueName"

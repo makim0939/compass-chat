@@ -10,7 +10,7 @@ import useContact from "./hooks/useContact";
 import SearchResult from "./components/SearchResult";
 import { selectProfilesByNickname } from "../utils/supabaseFunctions";
 import BackwardIcon from "../components/icon/BackwardIcon";
-import { ICON_COLOR, ICON_SIZE } from "../user_settings/page";
+import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
 
 type SearchUserFormInputs = {
   searchInput: string;
@@ -88,13 +88,13 @@ const AddContact = () => {
       <div className={styles.container}>
         <div className={styles.header}>
           <BackwardIcon
-            size={ICON_SIZE}
-            fill={ICON_COLOR}
+            size={ICON_SIZE_SMALL}
+            fill={ICON_COLOR_DARK}
             margin="0 16px 0 0"
             onClick={() => router.push("/")}
           />
           <h3>連絡先を追加</h3>
-          <div style={{ width: ICON_SIZE, margin: "0 8px" }}></div>
+          <div style={{ width: ICON_SIZE_SMALL, margin: "0 8px" }}></div>
         </div>
         <form onSubmit={handleSubmit(isValid)} className={styles.search_form}>
           <div className={styles.input_row}>

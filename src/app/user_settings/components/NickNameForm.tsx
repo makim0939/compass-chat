@@ -4,7 +4,7 @@ import { Profile } from "@/app/types/database.types";
 import { updateProfile } from "@/app/utils/supabaseFunctions";
 import useProfileMutation from "../hooks/useProfileMutation";
 import BackwardIcon from "@/app/components/icon/BackwardIcon";
-import { ICON_COLOR, ICON_SIZE } from "../page";
+import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
 
 const NickNameForm = ({ loginUser, setDisplay }: { loginUser: Profile; setDisplay: Function }) => {
   const profileMutation = useProfileMutation(loginUser.id);
@@ -28,13 +28,13 @@ const NickNameForm = ({ loginUser, setDisplay }: { loginUser: Profile; setDispla
     <div className={styles.form_wrapper}>
       <div className={styles.header}>
         <BackwardIcon
-          size={ICON_SIZE}
-          fill={ICON_COLOR}
+          size={ICON_SIZE_SMALL}
+          fill={ICON_COLOR_DARK}
           margin="0 8px 0 0"
           onClick={() => setDisplay("none")}
         />
         <h3>ニックネーム</h3>
-        <div style={{ width: ICON_SIZE, margin: "0 8px" }}></div>
+        <div style={{ width: ICON_SIZE_SMALL, margin: "0 8px" }}></div>
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         <input

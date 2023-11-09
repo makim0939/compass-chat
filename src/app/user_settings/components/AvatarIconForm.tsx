@@ -7,8 +7,7 @@ import { Profile } from "../../types/types";
 import styles from "../userSettings.module.scss";
 import "cropperjs/dist/cropper.css";
 import CloseIcon from "@/app/components/icon/CloseIcon";
-import { ICON_SIZE } from "../page";
-import { ICON_COLOR } from "../page";
+import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
 import BackwardIcon from "@/app/components/icon/BackwardIcon";
 
 const AvatarIconForm = ({
@@ -63,13 +62,13 @@ const AvatarIconForm = ({
     <div className={styles.form_wrapper}>
       <div className={styles.header}>
         <BackwardIcon
-          size={ICON_SIZE}
-          fill={ICON_COLOR}
+          size={ICON_SIZE_SMALL}
+          fill={ICON_COLOR_DARK}
           margin="0 8px 0 0"
           onClick={() => setDisplay("none")}
         />
         <h3>プロフィール画像</h3>
-        <div style={{ width: ICON_SIZE, margin: "0 8px" }}></div>
+        <div style={{ width: ICON_SIZE_SMALL, margin: "0 8px" }}></div>
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         <input

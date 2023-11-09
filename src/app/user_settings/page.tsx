@@ -10,9 +10,8 @@ import NickNameForm from "./components/NickNameForm";
 import UniqueNameForm from "./components/UniqueNameForm";
 import CloseIcon from "../components/icon/CloseIcon";
 import BackwardIcon from "../components/icon/BackwardIcon";
+import { ICON_SIZE_SMALL, ICON_COLOR_DARK } from "@/app/ui.config";
 const AVATAR_ICON_SIZE = 60;
-export const ICON_SIZE = 19;
-export const ICON_COLOR = "#303033";
 
 const UserSettings = () => {
   const [loginUser] = useAtom(loginUserAtom);
@@ -51,17 +50,17 @@ const UserSettings = () => {
       <div className={styles.container}>
         <div className={styles.header}>
           <BackwardIcon
-            size={ICON_SIZE}
-            fill={ICON_COLOR}
+            size={ICON_SIZE_SMALL}
+            fill={ICON_COLOR_DARK}
             margin="0 16px 0 0"
             onClick={() => router.push("/")}
           />
           <h3>設定</h3>
-          <div style={{ width: ICON_SIZE, margin: "0 8px" }}></div>
+          <div style={{ width: ICON_SIZE_SMALL, margin: "0 8px" }}></div>
           {/* <CloseIcon
-            size={ICON_SIZE}
+            size={ICON_SIZE_SMALL}
             margin="0 8px"
-            fill={ICON_COLOR}
+            fill={ICON_COLOR_DARK}
             onClick={() => router.push("/")}
           /> */}
         </div>

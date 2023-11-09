@@ -20,7 +20,7 @@ import useMessageScroll from "./hooks/useMessageScroll";
 import MessageForm from "./components/MessageForm";
 import Compass from "@/app/compass/Compass";
 import BackwardIcon from "@/app/components/icon/BackwardIcon";
-import { ICON_COLOR, ICON_SIZE } from "@/app/user_settings/page";
+import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
 
 const TalkRoom = ({ params }: { params: { room_id: number } }) => {
   const [loginUser] = useAtom(loginUserAtom);
@@ -77,8 +77,8 @@ const TalkRoom = ({ params }: { params: { room_id: number } }) => {
       <header className={styles.header}>
         <span className={styles.header_contents}>
           <BackwardIcon
-            size={ICON_SIZE}
-            fill={ICON_COLOR}
+            size={ICON_SIZE_SMALL}
+            fill={ICON_COLOR_DARK}
             margin="0 8px 0 0"
             onClick={() => router.push("/")}
           />
