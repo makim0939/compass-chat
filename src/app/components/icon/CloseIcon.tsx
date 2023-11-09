@@ -5,14 +5,20 @@ const ORIGIN_SIZE = 64;
 const CloseIcon = ({
   fill = "#D9D9D9",
   size = 36,
+  margin = "0 0 0 0",
   onClick,
 }: {
   fill?: string;
   size?: number;
+  margin?: string;
   onClick: () => void;
 }) => {
   return (
-    <button onClick={onClick} className={styles.container} style={{ width: size, height: size }}>
+    <button
+      onClick={onClick}
+      className={styles.container}
+      style={{ width: size, height: size, margin }}
+    >
       <svg
         className={styles.icon}
         xmlns="http://www.w3.org/2000/svg"

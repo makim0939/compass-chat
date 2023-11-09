@@ -21,8 +21,12 @@ const Home = () => {
     <>
       <header className={styles.header}>
         <div className={styles.header_buttons}>
-          <AddIcon size={ICON_SIZE} onClick={() => router.push("/addcontact")} />
-          <SettingsIcon size={ICON_SIZE} onClick={() => router.push("/user_settings")} />
+          <AddIcon size={ICON_SIZE} margin="0 8px" onClick={() => router.push("/addcontact")} />
+          <SettingsIcon
+            size={ICON_SIZE}
+            margin="0 8px"
+            onClick={() => router.push("/user_settings")}
+          />
         </div>
         <div className={styles.my_profile}>
           <div className={styles.icon}>
