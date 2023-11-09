@@ -8,8 +8,7 @@ import { useRouter } from "next/navigation";
 import AvatarIcon from "@/app/components/AvatarIcon";
 import SettingsIcon from "@/app/components/icon/SettingsIcon";
 import AddIcon from "@/app/components/icon/AddIcon";
-
-const ICON_SIZE = 25;
+import { ICON_SIZE } from "@/app/ui.config";
 export const HOME_AVATAR_SIZE = 50;
 
 const Home = () => {
