@@ -6,6 +6,9 @@ import useProfileMutation from "../hooks/useProfileMutation";
 import { Profile } from "../../types/types";
 import styles from "../userSettings.module.scss";
 import "cropperjs/dist/cropper.css";
+import CloseIcon from "@/app/components/icon/CloseIcon";
+import { CLOSE_ICON_SIZE } from "../page";
+import { CLOSE_ICON_COLOR } from "../page";
 
 const AvatarIconForm = ({
   loginUser,
@@ -57,9 +60,13 @@ const AvatarIconForm = ({
 
   return (
     <div className={styles.form_wrapper}>
-      <p className={styles.close_button} onClick={() => setDisplay("none")}>
-        閉じる
-      </p>
+      <div className={styles.close_icon_container}>
+        <CloseIcon
+          size={CLOSE_ICON_SIZE}
+          fill={CLOSE_ICON_COLOR}
+          onClick={() => setDisplay("none")}
+        />
+      </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         <h3>プロフィール画像を設定</h3>
         <input

@@ -8,7 +8,10 @@ import { useRouter } from "next/navigation";
 import AvatarIconForm from "./components/AvatarIconForm";
 import NickNameForm from "./components/NickNameForm";
 import UniqueNameForm from "./components/UniqueNameForm";
+import CloseIcon from "../components/icon/CloseIcon";
 const AVATAR_ICON_SIZE = 60;
+export const CLOSE_ICON_SIZE = 21;
+export const CLOSE_ICON_COLOR = "#303033";
 
 const UserSettings = () => {
   const [loginUser] = useAtom(loginUserAtom);
@@ -45,9 +48,17 @@ const UserSettings = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <p className={styles.close_button} onClick={() => router.push("/")}>
-          ホームに戻る
-        </p>
+        <div className={styles.header}>
+          <h3>設定</h3>
+          <div className={styles.close_icon_container}>
+            <CloseIcon
+              size={CLOSE_ICON_SIZE}
+              fill={CLOSE_ICON_COLOR}
+              onClick={() => router.push("/")}
+            />
+          </div>
+        </div>
+
         <ul className={styles.settings_list}>
           <li className={styles.settings_head}>
             <button

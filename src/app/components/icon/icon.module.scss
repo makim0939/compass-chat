@@ -9,5 +9,11 @@
     position: absolute;
     top: 0;
     left: 0;
+    g {
+      padding: 4px;
+    }
+  }
+  &:active {
+    background-color: transparent;
   }
 }

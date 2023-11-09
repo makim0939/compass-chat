@@ -5,14 +5,11 @@ import { loginUserAtom } from "@/app/atoms";
 import TalkRoomsList from "./TalkRoomsList";
 import styles from "../home.module.scss";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import AvatarIcon from "@/app/components/AvatarIcon";
 import SettingsIcon from "@/app/components/icon/SettingsIcon";
 import AddIcon from "@/app/components/icon/AddIcon";
 
-const ADD_BUTTON = "../assets/add_button.svg";
-const SETTINGS_BUTTON = "../assets/settings_button.svg";
-const ICON_SIZE = 36;
+const ICON_SIZE = 25;
 export const HOME_AVATAR_SIZE = 50;
 
 const Home = () => {
@@ -20,19 +17,12 @@ const Home = () => {
   if (!loginUser) throw new Error("loginUser is undefined");
   const router = useRouter();
 
-  const onClickUserSettings = () => {
-    router.push("/user_settings");
-  };
-  const onClickAddConnection = () => {
-    router.push("/addcontact");
-  };
-
   return (
     <>
       <header className={styles.header}>
         <div className={styles.header_buttons}>
-          <AddIcon size={ICON_SIZE} />
-          <SettingsIcon size={ICON_SIZE} />
+          <AddIcon size={ICON_SIZE} onClick={() => router.push("/addcontact")} />
+          <SettingsIcon size={ICON_SIZE} onClick={() => router.push("/user_settings")} />
         </div>
         <div className={styles.my_profile}>
           <div className={styles.icon}>
