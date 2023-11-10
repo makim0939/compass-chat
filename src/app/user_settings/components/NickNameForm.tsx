@@ -3,7 +3,7 @@ import styles from "../userSettings.module.scss";
 import { Profile } from "@/app/types/database.types";
 import { updateProfile } from "@/app/utils/supabaseFunctions";
 import useProfileMutation from "../hooks/useProfileMutation";
-import BackwardIcon from "@/app/components/ui/icon/BackwardIcon";
+import BackwardIcon from "@/app/components/icon/BackwardIcon";
 import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
 
 const NickNameForm = ({ loginUser, setDisplay }: { loginUser: Profile; setDisplay: Function }) => {

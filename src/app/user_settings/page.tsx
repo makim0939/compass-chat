@@ -8,8 +8,8 @@ import { useRouter } from "next/navigation";
 import AvatarIconForm from "./components/AvatarIconForm";
 import NickNameForm from "./components/NickNameForm";
 import UniqueNameForm from "./components/UniqueNameForm";
-import CloseIcon from "../components/ui/icon/CloseIcon";
-import BackwardIcon from "../components/ui/icon/BackwardIcon";
+import CloseIcon from "../components/icon/CloseIcon";
+import BackwardIcon from "../components/icon/BackwardIcon";
 import { ICON_SIZE_SMALL, ICON_COLOR_DARK } from "@/app/ui.config";
 const AVATAR_ICON_SIZE = 60;
 

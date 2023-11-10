@@ -6,8 +6,8 @@ import TalkRoomsList from "./TalkRoomsList";
 import styles from "../home.module.scss";
 import { useRouter } from "next/navigation";
 import AvatarIcon from "@/app/components/AvatarIcon";
-import SettingsIcon from "@/app/components/ui/icon/SettingsIcon";
-import AddIcon from "@/app/components/ui/icon/AddIcon";
+import SettingsIcon from "@/app/components/icon/SettingsIcon";
+import AddIcon from "@/app/components/icon/AddIcon";
 import { ICON_SIZE } from "@/app/ui.config";
 export const HOME_AVATAR_SIZE = 50;
 
