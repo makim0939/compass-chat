@@ -6,6 +6,7 @@ import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
 import BackwardIcon from "@/app/components/icon/BackwardIcon";
 import styles from "./settings_form.module.scss";
 import Container from "@/app/components/Container";
+import Button from "@/app/components/form/Button";
 
 const UniqueNameForm = ({
   loginUser,
@@ -61,9 +62,7 @@ const UniqueNameForm = ({
           onChange={handleChange}
         />
         <div className={styles.button_container}>
-          <button type="submit" className={styles.submit_button}>
-            設定
-          </button>
+          <Button value="設定" type="submit" />
         </div>
       </form>
     </Container>

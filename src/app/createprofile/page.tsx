@@ -6,6 +6,8 @@ import { ProfileInsertProps } from "../types/types";
 import { useRouter } from "next/navigation";
 import styles from "./createprofile.module.scss";
 import { insertProfile, selectProfileById } from "../utils/supabaseFunctions";
+import Container from "../components/Container";
+import Button from "../components/form/Button";
 
 const CreateProfile = () => {
   const { data: session, isLoading: isSessionLoading } = useSession();
@@ -63,7 +65,7 @@ const CreateProfile = () => {
   if (!isChecked) return;
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
+      <Container>
         <form onSubmit={handleSubmit(isValid)} className={styles.form}>
           <div className={styles.index}>
             <h2>ユーザ名を設定</h2>
@@ -97,10 +99,10 @@ const CreateProfile = () => {
 
           <div className={styles.form_buttons}>
             <div></div>
-            <button className={styles.button}>登録</button>
+            <Button value="登録" type="submit" />
           </div>
         </form>
-      </div>
+      </Container>
     </div>
   );
 };

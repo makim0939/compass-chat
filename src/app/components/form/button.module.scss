@@ -1,0 +1,19 @@
+$theme: rgb(42, 105, 210);
+$theme_dark: adjust-color($theme, $lightness: -5%);
+$theme_pale: adjust-color($theme, $lightness: +15%);
+$radius: 2px;
+.button {
+  height: 32px;
+  border: none;
+  border-radius: $radius;
+  background-color: $theme;
+  color: white;
+  font-size: 16px;
+  font-weight: normal;
+  &:active {
+    background-color: $theme_dark;
+  }
+  &:disabled {
+    background-color: $theme_pale;
+  }
+}

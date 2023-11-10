@@ -42,17 +42,6 @@ $radius: 2px;
     justify-content: flex-end;
     align-items: center;
   }
-  .button {
-    border: none;
-    background-color: $theme;
-    color: white;
-    height: 32px;
-    border-radius: $radius;
-    font-size: 16px;
-    &:active {
-      background-color: $theme_dark;
-    }
-  }
 }
 
 .search_result_container {
