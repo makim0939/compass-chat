@@ -1,0 +1,74 @@
+$theme: rgb(42, 105, 210);
+$theme_dark: adjust-color($theme, $lightness: -5%);
+$theme_pale: adjust-color($theme, $lightness: +15%);
+$radius: 2px;
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+
+  input {
+    margin: 16px 0 8px 0;
+  }
+  input[type="text"] {
+    width: 98%;
+    height: 28px;
+    background-color: #e5e5e7;
+    border: none;
+    border-radius: $radius;
+    font-size: 90%;
+    font-weight: bold;
+    color: #252528;
+    &:focus {
+      outline: $theme_pale 2px solid;
+    }
+  }
+  input[type="file"] {
+    width: 100%;
+    max-width: 240px;
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    &::-webkit-file-upload-button {
+      border: none;
+      background-color: transparent;
+      color: $theme;
+      border-radius: $radius;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  }
+  .crop_preview {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: #f0f0f0 solid 1px;
+    overflow: hidden;
+    margin: 16px 0 0 0;
+  }
+  .cropper {
+    width: 90%;
+    aspect-ratio: 1;
+    max-width: 240px;
+    max-height: 240px;
+    margin: 16px 0;
+  }
+  .button_container {
+    width: 100%;
+    margin: 8px 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .submit_button {
+    height: 32px;
+    border: none;
+    border-radius: $radius;
+    background-color: $theme;
+    color: white;
+    font-size: 16px;
+    font-weight: normal;
+  }
+}

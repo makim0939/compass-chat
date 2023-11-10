@@ -4,11 +4,12 @@ import supabase from "@/app/utils/supabase";
 import Cropper, { ReactCropperElement } from "react-cropper";
 import useProfileMutation from "../hooks/useProfileMutation";
 import { Profile } from "../../types/types";
-import styles from "../userSettings.module.scss";
 import "cropperjs/dist/cropper.css";
 import CloseIcon from "@/app/components/icon/CloseIcon";
 import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
 import BackwardIcon from "@/app/components/icon/BackwardIcon";
+import Container from "@/app/components/Container";
+import styles from "./settings_form.module.scss";
 
 const AvatarIconForm = ({
   loginUser,
@@ -59,8 +60,8 @@ const AvatarIconForm = ({
   };
 
   return (
-    <div className={styles.form_wrapper}>
-      <div className={styles.header}>
+    <Container>
+      <header>
         <BackwardIcon
           size={ICON_SIZE_SMALL}
           fill={ICON_COLOR_DARK}
@@ -69,7 +70,7 @@ const AvatarIconForm = ({
         />
         <h3>プロフィール画像</h3>
         <div style={{ width: ICON_SIZE_SMALL, margin: "0 8px" }}></div>
-      </div>
+      </header>
       <form onSubmit={handleSubmit} className={styles.form}>
         <input
           type="file"
@@ -108,7 +109,7 @@ const AvatarIconForm = ({
           </>
         )}
       </form>
-    </div>
+    </Container>
   );
 };
 

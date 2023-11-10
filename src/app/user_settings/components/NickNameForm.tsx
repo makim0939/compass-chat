@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import styles from "../userSettings.module.scss";
 import { Profile } from "@/app/types/database.types";
 import { updateProfile } from "@/app/utils/supabaseFunctions";
 import useProfileMutation from "../hooks/useProfileMutation";
 import BackwardIcon from "@/app/components/icon/BackwardIcon";
 import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
+import styles from "./settings_form.module.scss";
+import Container from "@/app/components/Container";
 
 const NickNameForm = ({ loginUser, setDisplay }: { loginUser: Profile; setDisplay: Function }) => {
   const profileMutation = useProfileMutation(loginUser.id);
@@ -25,8 +26,8 @@ const NickNameForm = ({ loginUser, setDisplay }: { loginUser: Profile; setDispla
     document.getElementById("input")!.focus();
   }, []);
   return (
-    <div className={styles.form_wrapper}>
-      <div className={styles.header}>
+    <Container>
+      <header>
         <BackwardIcon
           size={ICON_SIZE_SMALL}
           fill={ICON_COLOR_DARK}
@@ -35,7 +36,7 @@ const NickNameForm = ({ loginUser, setDisplay }: { loginUser: Profile; setDispla
         />
         <h3>ニックネーム</h3>
         <div style={{ width: ICON_SIZE_SMALL, margin: "0 8px" }}></div>
-      </div>
+      </header>
       <form onSubmit={handleSubmit} className={styles.form}>
         <input
           name="nickname"
@@ -51,7 +52,7 @@ const NickNameForm = ({ loginUser, setDisplay }: { loginUser: Profile; setDispla
           </button>
         </div>
       </form>
-    </div>
+    </Container>
   );
 };
 

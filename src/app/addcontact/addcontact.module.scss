@@ -2,38 +2,6 @@ $theme: rgb(42, 105, 210);
 $theme_dark: adjust-color($theme, $lightness: -5%);
 $theme_pale: adjust-color($theme, $lightness: +25%);
 $radius: 2px;
-.wrapper {
-  font-family:
-    "Segoe UI",
-    "Segoe UI Web (West European)",
-    "Segoe UI",
-    -apple-system,
-    BlinkMacSystemFont,
-    Roboto,
-    "Helvetica Neue",
-    sans-serif;
-  font-size: 16px;
-  color: #252528;
-}
-.container {
-  max-width: 540px;
-  width: 70%;
-  margin: 96px auto;
-  padding: 32px;
-  box-shadow: 8px 8px 12px #f0f0f0;
-  border: solid 1px #f5f5f5;
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 0 16px 0;
-    h3 {
-      width: fit-content;
-      margin: 0;
-      text-align: center;
-    }
-  }
-}
 
 .search_form {
   width: 100%;

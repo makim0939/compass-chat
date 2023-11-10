@@ -11,6 +11,7 @@ import SearchResult from "./components/SearchResult";
 import { selectProfilesByNickname } from "../utils/supabaseFunctions";
 import BackwardIcon from "../components/icon/BackwardIcon";
 import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
+import Container from "../components/Container";
 
 type SearchUserFormInputs = {
   searchInput: string;
@@ -85,8 +86,8 @@ const AddContact = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <div className={styles.header}>
+      <Container>
+        <header>
           <BackwardIcon
             size={ICON_SIZE_SMALL}
             fill={ICON_COLOR_DARK}
@@ -95,7 +96,7 @@ const AddContact = () => {
           />
           <h3>連絡先を追加</h3>
           <div style={{ width: ICON_SIZE_SMALL, margin: "0 8px" }}></div>
-        </div>
+        </header>
         <form onSubmit={handleSubmit(isValid)} className={styles.search_form}>
           <div className={styles.input_row}>
             <div>
@@ -134,7 +135,7 @@ const AddContact = () => {
             )}
           </div>
         )}
-      </div>
+      </Container>
     </div>
   );
 };

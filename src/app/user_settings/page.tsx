@@ -11,6 +11,7 @@ import UniqueNameForm from "./components/UniqueNameForm";
 import CloseIcon from "../components/icon/CloseIcon";
 import BackwardIcon from "../components/icon/BackwardIcon";
 import { ICON_SIZE_SMALL, ICON_COLOR_DARK } from "@/app/ui.config";
+import Container from "../components/Container";
 const AVATAR_ICON_SIZE = 60;
 
 const UserSettings = () => {
@@ -47,8 +48,8 @@ const UserSettings = () => {
     );
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <div className={styles.header}>
+      <Container>
+        <header className={styles.header}>
           <BackwardIcon
             size={ICON_SIZE_SMALL}
             fill={ICON_COLOR_DARK}
@@ -57,13 +58,7 @@ const UserSettings = () => {
           />
           <h3>設定</h3>
           <div style={{ width: ICON_SIZE_SMALL, margin: "0 8px" }}></div>
-          {/* <CloseIcon
-            size={ICON_SIZE_SMALL}
-            margin="0 8px"
-            fill={ICON_COLOR_DARK}
-            onClick={() => router.push("/")}
-          /> */}
-        </div>
+        </header>
 
         <ul className={styles.settings_list}>
           <li className={styles.settings_head}>
@@ -93,7 +88,8 @@ const UserSettings = () => {
             </button>
           </li>
         </ul>
-      </div>
+      </Container>
+      <div className={styles.container}></div>
     </div>
   );
 };
