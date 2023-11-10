@@ -10,6 +10,7 @@ import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
 import BackwardIcon from "@/app/components/icon/BackwardIcon";
 import Container from "@/app/components/Container";
 import styles from "./settings_form.module.scss";
+import Button from "@/app/components/form/Button";
 
 const AvatarIconForm = ({
   loginUser,
@@ -85,9 +86,7 @@ const AvatarIconForm = ({
               style={{ width: "120px", float: "left", height: "120px" }}
             ></div>
             <div className={styles.button_container}>
-              <button type="submit" className={styles.submit_button}>
-                設定
-              </button>
+              <Button value="設定" type="submit" />
             </div>
             <div className={styles.cropper}>
               <Cropper

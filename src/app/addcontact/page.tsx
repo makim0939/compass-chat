@@ -12,6 +12,7 @@ import { selectProfilesByNickname } from "../utils/supabaseFunctions";
 import BackwardIcon from "../components/icon/BackwardIcon";
 import { ICON_COLOR_DARK, ICON_SIZE_SMALL } from "@/app/ui.config";
 import Container from "../components/Container";
+import Button from "../components/form/Button";
 
 type SearchUserFormInputs = {
   searchInput: string;
@@ -116,9 +117,7 @@ const AddContact = () => {
             />
           </div>
           <div className={styles.form_buttons}>
-            <button className={styles.button} disabled={isContactsLoading}>
-              検索
-            </button>
+            <Button value="検索" type="submit" disabled={isContactsLoading} />
           </div>
         </form>
 

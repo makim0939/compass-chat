@@ -1,7 +1,6 @@
-$theme: #35d0c5;
-$theme_hover: #50e0d5;
-$theme_active: #20bbb0;
-$theme_pale: #a0f0e5;
+$theme: rgb(42, 105, 210);
+$theme_dark: adjust-color($theme, $lightness: -5%);
+$theme_pale: adjust-color($theme, $lightness: +15%);
 
 .header {
   position: fixed;
@@ -115,6 +114,7 @@ $theme_pale: #a0f0e5;
       color: white;
       border-radius: 8px;
       font-size: 16px;
+      font-weight: normal;
     }
   }
 }
