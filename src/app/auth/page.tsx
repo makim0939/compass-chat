@@ -34,7 +34,12 @@ const Authentication = () => {
               theme: ThemeSupa,
               variables: {
                 default: {
-                  colors: { brand: "rgb(42, 105, 210);", brandAccent: "rgb(38, 95, 190);" },
+                  // colors: { brand: "rgb(42, 105, 210);", brandAccent: "rgb(38, 95, 190);" },
+                  colors: {
+                    brand: "rgb(112, 224, 144);",
+                    brandAccent: "rgb(107, 204, 134);",
+                    brandButtonText: "white;",
+                  },
                 },
               },
             }}

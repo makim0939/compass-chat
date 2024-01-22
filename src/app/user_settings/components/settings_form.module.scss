@@ -1,4 +1,4 @@
-$theme: rgb(42, 105, 210);
+$theme: rgb(144, 220, 144);
 $theme_dark: adjust-color($theme, $lightness: -5%);
 $theme_pale: adjust-color($theme, $lightness: +15%);
 $radius: 2px;
@@ -34,7 +34,7 @@ $radius: 2px;
     &::-webkit-file-upload-button {
       border: none;
       background-color: transparent;
-      color: $theme;
+      color: rgb(42, 105, 210);
       border-radius: $radius;
       text-decoration: underline;
       cursor: pointer;
