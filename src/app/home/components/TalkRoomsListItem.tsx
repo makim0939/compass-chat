@@ -19,7 +19,7 @@ const TalkRoomsListItem = ({ roomUserRelation }: { roomUserRelation: RoomUserRel
           <div className={styles.icon}>
             <AvatarIcon size={HOME_AVATAR_SIZE} user={member[0]} />
           </div>
-          <p>{roomUserRelation.talkroom_name}</p>
+          <p>{member[0].nickname}</p>
         </div>
       </Link>
     </li>
